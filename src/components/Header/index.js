@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 export default function Header() {
     return (
         <AppBar position='static'>
-            <Toolbar variant='dense' sx={{ backgroundColor: 'rose.main' }}>
+            <Toolbar variant='dense' sx={{ backgroundColor: 'rain.main' }}>
                 <Grid container justifyContent='space-between' alignItems='center'>
                     <Grid item>
                         <Typography variant='h5' color='malachite.main'>HG Art and Photography</Typography>
