@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Typography, Box, Paper } from '@mui/material';
+import FadeInSection from '../components/FadeInSection';
 
-import Image from 'mui-image';
+import { Typography, Box } from '@mui/material';
 
 export default function Landing() {
     return (
+        // MUI BOX METHOD
         <Box style={{
             backgroundImage: 'url(/art/girl_dog_sleep.jpg)',
             backgroundRepeat: 'no-repeat',
@@ -14,8 +15,10 @@ export default function Landing() {
             backgroundPosition: 'center',
             backgroundSize: 'cover'
         }}>
-            {/* <Image className='landing-img' src='/art/girl_dog_sleep.jpg' height='100%' width='440px' fit='contain' /> */}
             <Typography variant='h3'>Welcome.</Typography>
         </Box>
+
+        //IMAGE PACKAGE METHOD
+        //<Image className='landing-img' src='/art/girl_dog_sleep.jpg' height='100%' width='440px' fit='contain' />
     )
 }
