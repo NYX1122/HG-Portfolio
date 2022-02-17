@@ -5,22 +5,20 @@ import Header from './components/Header';
 import Landing from './pages/Landing';
 
 import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material';
+import { Box } from '@mui/material';
 
 import theme from './theme';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <box sx={{ fontFamily: 'Quicksand' }}>
+      <Box>
         <Header></Header>
         <Landing>
         </Landing>
         {/* <Link to='/pieces' sx={{ color: 'rain.main' }}>Projects</Link>
         <Link to='/contactme'>Contact Me</Link> */}
-      </box>
+      </Box>
     </ThemeProvider>
   );
 }
