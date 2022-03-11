@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Header from './components/Header';
 import Landing from './pages/Landing';
 
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
@@ -14,8 +16,23 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <Header></Header>
-        <Landing>
-        </Landing>
+        <Parallax pages={2}>
+          <ParallaxLayer offset={0} speed={0}>
+            <Landing></Landing>
+          </ParallaxLayer>
+          <ParallaxLayer offset={1} speed={4} style={{ backgroundColor: '#CBB3BF' }} />
+          <ParallaxLayer
+            offset={1}
+            speed={0.5}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+            }}>
+            <p>TEST</p>
+        </ParallaxLayer>
+        </Parallax>
         {/* <Link to='/pieces' sx={{ color: 'rain.main' }}>Projects</Link>
         <Link to='/contactme'>Contact Me</Link> */}
       </Box>

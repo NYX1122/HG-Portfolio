@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Header() {
     return (
-        <AppBar position='static'>
+        <AppBar position='fixed'>
             <Toolbar variant='dense' sx={{ backgroundColor: 'rain.main' }}>
                 <Grid container justifyContent='space-between' alignItems='center'>
                     <Grid item>
