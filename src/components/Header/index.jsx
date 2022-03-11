@@ -12,7 +12,7 @@ export default function Header() {
                     </Grid>
                     <Grid item>
                         <IconButton>
-                            <MenuIcon sx={{ fontSize: 35, color: 'malachite.main' }}></MenuIcon>
+                            <MenuIcon sx={{ fontSize: 36, color: 'malachite.main' }}></MenuIcon>
                         </IconButton>
                     </Grid>
                 </Grid>
