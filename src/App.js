@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Header from './components/Header';
 import Landing from './pages/Landing';
+import Pieces from './pages/Pieces';
 
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
@@ -30,7 +31,7 @@ export default function App() {
               alignItems: 'center',
               color: 'white',
             }}>
-            <p>TEST</p>
+            <Pieces></Pieces>
         </ParallaxLayer>
         </Parallax>
         {/* <Link to='/pieces' sx={{ color: 'rain.main' }}>Projects</Link>
