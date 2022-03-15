@@ -1,4 +1,9 @@
+import React, { useState, useEffect, useCallback } from 'react';
+
+
 import PieceItem from '../components/PieceItem';
+
+import { Box } from '@mui/material';
 
 export default function Pieces() {
   const artList = [
@@ -25,7 +30,9 @@ export default function Pieces() {
   ]
 
   return (
-    <main>
+    <Box sx={{
+      marginTop: '10px'
+    }}>
       {artList.map((image) => (
         <PieceItem
           imgName={image.name}
@@ -33,6 +40,6 @@ export default function Pieces() {
           key={image.id}
         ></PieceItem>
       ))}
-    </main>
+    </Box>
   );
 }
