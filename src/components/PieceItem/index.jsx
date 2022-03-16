@@ -1,9 +1,10 @@
 import React from 'react';
+
+import { Waypoint } from 'react-waypoint';
+
 import { Box } from '@mui/material';
 
-export default function Header({ imgName }) {
-    console.log(imgName);
-
+export default function Header({ imgName, setVisible }) {
     return (
         <Box sx={{
             width: 342,

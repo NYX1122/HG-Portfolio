@@ -6,7 +6,6 @@ import { AppBar, Toolbar, Typography, IconButton, Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu'; 
 
 export default function Header({ visibleHeader }) {
-    console.log(visibleHeader);
     const props = useSpring({
         to: { y: -100 },
         from: { y: 0 },

@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
 import Landing from './pages/Landing';
-import Pieces from './pages/Pieces';
+import PiecesOne from './pages/PiecesOne';
+import PiecesTwo from './pages/PiecesTwo';
 
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
@@ -20,7 +21,6 @@ export default function App() {
   let startingPoint = 0;
   const handleScroll = () => {
     if (parallax.current) {
-      console.log(parallax.current.current)
       //used to set header visibility
       let position = parallax.current.current;
       if(position > startingPoint) {
@@ -43,11 +43,13 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <Header visibleHeader={visibleHeader}></Header>
-        <Parallax pages={2} ref={parallax} className='parallax' style={{ zIndex: -1 }}>
+        <Parallax pages={3} ref={parallax} className='parallax' style={{ zIndex: -1 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
           </ParallaxLayer>
+
           <ParallaxLayer offset={1} speed={4} style={{ backgroundColor: '#CBB3BF' }} />
+
           <ParallaxLayer
             offset={1}
             speed={0.5}
@@ -57,8 +59,20 @@ export default function App() {
               alignItems: 'center',
               color: 'white',
             }}>
-            <Pieces></Pieces>
+            <PiecesOne></PiecesOne>
         </ParallaxLayer>
+
+          <ParallaxLayer
+            offset={2}
+            speed={0.5}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: 'white',
+            }}>
+            <PiecesTwo></PiecesTwo>
+          </ParallaxLayer>
         </Parallax>
       </Box>
     </ThemeProvider>
