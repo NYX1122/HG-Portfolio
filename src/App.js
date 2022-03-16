@@ -42,8 +42,8 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Box>
-      <Header visibleHeader={visibleHeader}></Header>
-        <Parallax pages={2} ref={parallax} className='parallax'>
+        <Header visibleHeader={visibleHeader}></Header>
+        <Parallax pages={2} ref={parallax} className='parallax' style={{ zIndex: -1 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
           </ParallaxLayer>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
-
+import React from 'react';
 
 import PieceItem from '../components/PieceItem';
 
