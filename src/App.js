@@ -3,8 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
 import Landing from './pages/Landing';
-import PiecesOne from './pages/PiecesOne';
-import PiecesTwo from './pages/PiecesTwo';
+import Pieces from './pages/Pieces';
 
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
@@ -47,9 +46,6 @@ export default function App() {
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
           </ParallaxLayer>
-
-          {/* <ParallaxLayer offset={2} speed={4} style={{ backgroundColor: '#CBB3BF' }} /> */}
-
           <ParallaxLayer
             offset={1.5}
             speed={0.5}
@@ -59,19 +55,8 @@ export default function App() {
               alignItems: 'center',
               color: 'white',
             }}>
-            <PiecesOne></PiecesOne>
+            <Pieces></Pieces>
         </ParallaxLayer>
-          {/* <ParallaxLayer
-            offset={2}
-            speed={0.5}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: 'white',
-            }}>
-            <PiecesTwo></PiecesTwo>
-          </ParallaxLayer> */}
         </Parallax>
       </Box>
     </ThemeProvider>
