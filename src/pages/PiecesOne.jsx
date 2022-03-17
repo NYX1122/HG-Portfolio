@@ -33,11 +33,31 @@ export default function PiecesOne() {
       id: 4,
       name: 'brown_bear_dog',
       description: 'A brown dog named Bear.'
+    },
+    {
+      id: 5,
+      name: 'cow_mountain_field',
+      description: 'A bull standing in a field.'
+    },
+    {
+      id: 6,
+      name: 'candle_melting_hand',
+      description: 'A candle metling in the palm of a hand.'
+    },
+    {
+      id: 7,
+      name: 'black_pitbull_dog',
+      description: 'A black pitbull.'
+    },
+    {
+      id: 8,
+      name: 'lady_pink_car',
+      description: 'A woman laying on a pink car in the grand canyon.'
     }
   ]
 
   // Animations used to move in pieceItem components to view
-  const trailList = useTrail(4, {
+  const trailList = useTrail(8, {
     from: {x: -400, opacity: 0},
     to: { x: 0, opacity: 1 },
     reverse: !visible
@@ -47,8 +67,8 @@ export default function PiecesOne() {
     <Box sx={{
       marginTop: '10px'
     }}>
+      <Waypoint onEnter={() => setVisible(value => !value)}></Waypoint>
       {trailList.map((styles, index) => (
-        <Waypoint onEnter={() => setVisible(true)} onLeave={() => setVisible(false)} key={artList[index].id}>
           <animated.div style={styles} key={artList[index].id}>
             <PieceItem
               imgName={artList[index].name}
@@ -56,7 +76,6 @@ export default function PiecesOne() {
               setVisible={setVisible}
             ></PieceItem>
           </animated.div>
-        </Waypoint>
       ))}
     </Box>
   );

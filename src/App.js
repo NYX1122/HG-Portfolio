@@ -43,15 +43,15 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <Header visibleHeader={visibleHeader}></Header>
-        <Parallax pages={3} ref={parallax} className='parallax' style={{ zIndex: -1 }}>
+        <Parallax pages={2.665} ref={parallax} className='parallax' style={{ zIndex: -1 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
           </ParallaxLayer>
 
-          <ParallaxLayer offset={1} speed={4} style={{ backgroundColor: '#CBB3BF' }} />
+          {/* <ParallaxLayer offset={2} speed={4} style={{ backgroundColor: '#CBB3BF' }} /> */}
 
           <ParallaxLayer
-            offset={1}
+            offset={1.5}
             speed={0.5}
             style={{
               display: 'flex',
@@ -61,8 +61,7 @@ export default function App() {
             }}>
             <PiecesOne></PiecesOne>
         </ParallaxLayer>
-
-          <ParallaxLayer
+          {/* <ParallaxLayer
             offset={2}
             speed={0.5}
             style={{
@@ -72,7 +71,7 @@ export default function App() {
               color: 'white',
             }}>
             <PiecesTwo></PiecesTwo>
-          </ParallaxLayer>
+          </ParallaxLayer> */}
         </Parallax>
       </Box>
     </ThemeProvider>
