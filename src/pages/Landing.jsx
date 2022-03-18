@@ -13,14 +13,6 @@ export default function Landing() {
         config: { duration: 800 }
     });
 
-    const arrowProps = useSpring({
-        loop: { reverse: true },
-        from: { y: -20 },
-        to: { y: 0 },
-        delay: 300,
-        config: { tension: 10, friction: 0 }
-    })
-
     return (
         // MUI BOX METHOD
         <animated.div style={props}>
@@ -35,7 +27,7 @@ export default function Landing() {
                 <Stack justifyContent='center' alignItems='center' spacing={8}>
                     <Typography variant='h2' sx={{ color: 'white', textShadow: 'black 0 5px 5px', fontWeight: 200, marginTop: '25vh', marginBottom: '10vh' }}>Welcome.</Typography>
                     <Typography variant='h3' sx={{ color: 'white', textShadow: 'black 0 5px 5px', fontWeight: 200 }}>My Work</Typography>
-                    <animated.div style={arrowProps}><LandingArrow sx={{ textShadow: 'black 0 5px 5px' }}></LandingArrow></animated.div>
+                    <LandingArrow sx={{ textShadow: 'black 0 5px 5px' }}></LandingArrow>
                 </Stack>
             </Box>
         </animated.div>
