@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
 import Menu from './components/Menu';
+import DarkOverlay from './components/DarkOverlay';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 
@@ -46,7 +47,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <Header visibleHeader={visibleHeader} setShowHeaderMenu={setShowHeaderMenu}></Header>
-        <Menu showHeaderMenu={showHeaderMenu}></Menu>
+        <DarkOverlay showHeaderMenu={showHeaderMenu} setShowHeaderMenu={setShowHeaderMenu}></DarkOverlay>
         <Parallax pages={2.665} ref={parallax} className='parallax' style={{ zIndex: -2 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
