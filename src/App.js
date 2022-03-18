@@ -2,7 +2,6 @@ import './App.css';
 import React, { useEffect, useRef, useState } from 'react';
 
 import Header from './components/Header';
-import Menu from './components/Menu';
 import DarkOverlay from './components/DarkOverlay';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
@@ -19,7 +18,6 @@ export default function App() {
   const [visibleHeader, setVisibleHeader] = useState(true);
   //Used to set header menu visibility
   const [showHeaderMenu, setShowHeaderMenu] = useState(false);
-  console.log(showHeaderMenu);
   //Code needed to get scroll position of page for header responsiveness
   const parallax = useRef();
   let startingPoint = 0;
@@ -47,7 +45,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <Header visibleHeader={visibleHeader} setShowHeaderMenu={setShowHeaderMenu}></Header>
-        <DarkOverlay showHeaderMenu={showHeaderMenu} setShowHeaderMenu={setShowHeaderMenu}></DarkOverlay>
+        <DarkOverlay showHeaderMenu={showHeaderMenu} setShowHeaderMenu={setShowHeaderMenu} parallax={parallax}></DarkOverlay>
         <Parallax pages={2.665} ref={parallax} className='parallax' style={{ zIndex: -2 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>

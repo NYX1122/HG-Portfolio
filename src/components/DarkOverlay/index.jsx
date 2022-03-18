@@ -6,7 +6,7 @@ import { useTransition, animated } from 'react-spring';
 
 import { Box } from '@mui/material';
 
-export default function DarkOverlay({ showHeaderMenu, setShowHeaderMenu }) {
+export default function DarkOverlay({ showHeaderMenu, setShowHeaderMenu, parallax }) {
     const transitions = useTransition(showHeaderMenu, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
@@ -30,7 +30,7 @@ export default function DarkOverlay({ showHeaderMenu, setShowHeaderMenu }) {
             }} onClick={hideMenu}>
             </Box>
             <Box sx={{ width: '35.31vw', display: 'flex', justifyContent: 'center' }}>
-                <Menu showHeaderMenu={showHeaderMenu}></Menu>
+                <Menu showHeaderMenu={showHeaderMenu} parallax={parallax} setShowHeaderMenu={setShowHeaderMenu}></Menu>
             </Box>
         </animated.div>
     );

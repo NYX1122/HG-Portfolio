@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring';
 
 import { Box, Typography, Stack, Button } from '@mui/material';
 
-export default function Menu({ showHeaderMenu }) {
+export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
     const transitions = useTransition(showHeaderMenu, {
         from: { y: -300 },
         enter: { y: 20 },
@@ -12,6 +12,11 @@ export default function Menu({ showHeaderMenu }) {
         reverse: showHeaderMenu,
         delay: 200,
     })
+
+    const piecesScroll = () => {
+        parallax.current.scrollTo(1);
+        setShowHeaderMenu(false);
+    };
 
     return transitions(
         (styles, item) => item && <animated.div style={styles}>
@@ -51,7 +56,7 @@ export default function Menu({ showHeaderMenu }) {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }}>PIECES</Button>
+                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }} onClick={piecesScroll}>PIECES</Button>
                             </Box>
                         </Box>
                         <Box sx={{
