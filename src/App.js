@@ -5,6 +5,7 @@ import Header from './components/Header';
 import DarkOverlay from './components/DarkOverlay';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
+import AboutMe from './pages/AboutMe';
 
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 
@@ -46,7 +47,7 @@ export default function App() {
       <Box>
         <Header visibleHeader={visibleHeader} setShowHeaderMenu={setShowHeaderMenu}></Header>
         <DarkOverlay showHeaderMenu={showHeaderMenu} setShowHeaderMenu={setShowHeaderMenu} parallax={parallax}></DarkOverlay>
-        <Parallax pages={2.665} ref={parallax} className='parallax' style={{ zIndex: -2 }}>
+        <Parallax pages={3.25} ref={parallax} className='parallax' style={{ zIndex: -2 }}>
           <ParallaxLayer offset={0} speed={0}>
             <Landing></Landing>
           </ParallaxLayer>
@@ -60,7 +61,18 @@ export default function App() {
               color: 'white',
             }}>
             <Pieces></Pieces>
-        </ParallaxLayer>
+          </ParallaxLayer>
+          <ParallaxLayer offset={2.5} speed={1} style={{ backgroundColor: '#95ADB6' }}></ParallaxLayer>
+          <ParallaxLayer
+            offset={2.5}
+            speed={1}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <AboutMe></AboutMe>
+          </ParallaxLayer>
         </Parallax>
       </Box>
     </ThemeProvider>

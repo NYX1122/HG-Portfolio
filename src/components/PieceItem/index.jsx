@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box } from '@mui/material';
 
-export default function Header({ imgName, setVisible }) {
+export default function Header({ imgName }) {
     return (
         <Box sx={{
             width: 342,

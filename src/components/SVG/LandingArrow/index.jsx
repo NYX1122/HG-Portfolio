@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import { useSpring, animated } from 'react-spring';
 
-import { Box } from '@mui/material';
-
 export default function LandingArrow (props) {
 
   const arrowProps = useSpring({
