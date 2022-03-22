@@ -18,6 +18,11 @@ export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
         setShowHeaderMenu(false);
     };
 
+    const aboutMeScroll = () => {
+        parallax.current.scrollTo(2.5);
+        setShowHeaderMenu(false);
+    }
+
     return transitions(
         (styles, item) => item && <animated.div style={styles}>
             <Box sx={{
@@ -77,7 +82,7 @@ export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }}>ABOUT ME</Button>
+                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }} onClick={aboutMeScroll}>ABOUT ME</Button>
                             </Box>
                         </Box>
                         <Box sx={{
