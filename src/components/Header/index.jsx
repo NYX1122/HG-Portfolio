@@ -23,7 +23,7 @@ export default function Header() {
       sx={{
         width: '100vw',
         position: 'fixed',
-        zIndex: 4,
+        zIndex: 10,
       }}
       animate={{ scrollYProgress: 0.9 }}
       style={{ backgroundColor, scrollYProgress }}

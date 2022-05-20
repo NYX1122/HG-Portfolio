@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PieceItem from '../components/PieceItem';
+import ParallaxLayer from '../components/ParallaxLayer';
 
 import { Box } from '@mui/material';
 
@@ -53,7 +54,7 @@ export default function PiecesOne() {
 
   const { scrollYProgress } = useViewportScroll();
   const scrollRange = [0, 0.25];
-  const movementRange = [600, -400];
+  const movementRange = [300, -500];
 
   const y = useTransform(scrollYProgress, scrollRange, movementRange);
 
@@ -70,6 +71,7 @@ export default function PiecesOne() {
           position: 'relative',
           zIndex: '3',
         }}
+        animate={{ y: 0 }}
         style={{ y, scrollYProgress }}
       >
         {artList.map((item, index) => (
@@ -82,19 +84,14 @@ export default function PiecesOne() {
           </Box>
         ))}
       </Box>
-      <Box
-        component={motion.div}
-        sx={{
-          height: '500px',
-          width: '100vw',
-          position: 'absolute',
-          top: '100vh',
-          backgroundColor: 'rose.main',
-          zIndex: '2',
-        }}
-        animate={{ scrollYProgress: -600 }}
-        style={{ y, scrollYProgress }}
-      ></Box>
+      <ParallaxLayer
+        scrollRange={[0, 0.17]}
+        movementRange={[600, -600]}
+        color={'rose.main'}
+        height={'700px'}
+        top={'100vh'}
+        zIndex={'2'}
+      ></ParallaxLayer>
     </>
   );
 }
