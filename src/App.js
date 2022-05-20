@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 
 import Header from './components/Header';
-import DarkOverlay from './components/DarkOverlay';
+// import DarkOverlay from './components/DarkOverlay';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 import AboutMe from './pages/AboutMe';
