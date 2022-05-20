@@ -1,38 +1,50 @@
 import React from 'react';
 
-import { useSpring, animated } from 'react-spring';
+import { Typography, IconButton, Grid, Box } from '@mui/material';
 
-import { AppBar, Toolbar, Typography, IconButton, Grid } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu'; 
+import MenuIcon from '@mui/icons-material/Menu';
 
-export default function Header({ visibleHeader, setShowHeaderMenu }) {
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-    const props = useSpring({
-        to: { y: -100 },
-        from: { y: 0 },
-        reverse: visibleHeader
-    });
+export default function Header() {
+  const { scrollYProgress } = useViewportScroll();
+  const scrollRange = [0.9, 1];
+  const colorRange = ['#95ADB6', '#CBB3BF'];
 
-    const displayMenu = () => {
-        setShowHeaderMenu(true);
-    };
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    scrollRange,
+    colorRange
+  );
 
-    return (
-        <animated.div style={props}>
-            <AppBar sx={{ position: 'fixed', zIndex: -1 }}>
-                <Toolbar variant='dense' sx={{ backgroundColor: 'rain.main' }}>
-                    <Grid container justifyContent='space-between' alignItems='center'>
-                        <Grid item>
-                            <Typography variant='h5' color='malachite.main'>HG Art and Photography</Typography>
-                        </Grid>
-                        <Grid item>
-                            <IconButton onClick={displayMenu}>
-                                <MenuIcon sx={{ fontSize: 36, color: 'malachite.main' }}></MenuIcon>
-                            </IconButton>
-                        </Grid>
-                    </Grid>
-                </Toolbar>
-            </AppBar>
-        </animated.div>
-    );
+  return (
+    <Box
+      component={motion.div}
+      sx={{
+        width: '100vw',
+        position: 'fixed',
+        zIndex: 4,
+      }}
+      animate={{ scrollYProgress: 0.9 }}
+      style={{ backgroundColor, scrollYProgress }}
+    >
+      <Grid
+        container
+        justifyContent='space-between'
+        alignItems='center'
+        sx={{ px: '15px' }}
+      >
+        <Grid item>
+          <Typography variant='h5' color='malachite.main'>
+            HG Art and Photography
+          </Typography>
+        </Grid>
+        <Grid item>
+          <IconButton sx={{ px: 0 }}>
+            <MenuIcon sx={{ fontSize: 36, color: 'malachite.main' }}></MenuIcon>
+          </IconButton>
+        </Grid>
+      </Grid>
+    </Box>
+  );
 }

@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PieceItem from '../components/PieceItem';
 
-import { useTrail, animated } from 'react-spring';
-
-import { Waypoint } from 'react-waypoint';
-
 import { Box } from '@mui/material';
 
-export default function PiecesOne() {
-  // For running animations when they come into view
-  const [ visible, setVisible ] = useState(false);
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
+export default function PiecesOne() {
   // List of art to be displayed
   const artList = [
     {
@@ -22,61 +17,84 @@ export default function PiecesOne() {
     {
       id: 2,
       name: 'marylin_monroe_portrait',
-      description: 'Marylin Monroe smiling.'
+      description: 'Marylin Monroe smiling.',
     },
     {
       id: 3,
       name: 'full_moon_night',
-      description: 'A full moon at night.'
+      description: 'A full moon at night.',
     },
     {
       id: 4,
       name: 'brown_bear_dog',
-      description: 'A brown dog named Bear.'
+      description: 'A brown dog named Bear.',
     },
     {
       id: 5,
       name: 'cow_mountain_field',
-      description: 'A bull standing in a field.'
+      description: 'A bull standing in a field.',
     },
     {
       id: 6,
       name: 'candle_melting_hand',
-      description: 'A candle metling in the palm of a hand.'
+      description: 'A candle metling in the palm of a hand.',
     },
     {
       id: 7,
       name: 'black_pitbull_dog',
-      description: 'A black pitbull.'
+      description: 'A black pitbull.',
     },
     {
       id: 8,
       name: 'lady_pink_car',
-      description: 'A woman laying on a pink car in the grand canyon.'
-    }
-  ]
+      description: 'A woman laying on a pink car in the grand canyon.',
+    },
+  ];
 
-  // Animations used to move in pieceItem components to view
-  const trailList = useTrail(8, {
-    from: {x: -400, opacity: 0},
-    to: { x: 0, opacity: 1 },
-    reverse: !visible
-  });
+  const { scrollYProgress } = useViewportScroll();
+  const scrollRange = [0, 0.25];
+  const movementRange = [600, -400];
+
+  const y = useTransform(scrollYProgress, scrollRange, movementRange);
 
   return (
-    <Box sx={{
-      marginTop: '10px'
-    }}>
-      <Waypoint onEnter={() => setVisible(value => !value)}></Waypoint>
-      {trailList.map((styles, index) => (
-          <animated.div style={styles} key={artList[index].id}>
+    <>
+      <Box
+        component={motion.div}
+        sx={{
+          height: '1400px',
+          my: '30px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: '3',
+        }}
+        style={{ y, scrollYProgress }}
+      >
+        {artList.map((item, index) => (
+          <Box key={index}>
             <PieceItem
-              imgName={artList[index].name}
-              alt={artList[index].description}
-              setVisible={setVisible}
+              imgName={item.name}
+              identifier={index}
+              alt={item.description}
             ></PieceItem>
-          </animated.div>
-      ))}
-    </Box>
+          </Box>
+        ))}
+      </Box>
+      <Box
+        component={motion.div}
+        sx={{
+          height: '500px',
+          width: '100vw',
+          position: 'absolute',
+          top: '100vh',
+          backgroundColor: 'rose.main',
+          zIndex: '2',
+        }}
+        animate={{ scrollYProgress: -600 }}
+        style={{ y, scrollYProgress }}
+      ></Box>
+    </>
   );
 }

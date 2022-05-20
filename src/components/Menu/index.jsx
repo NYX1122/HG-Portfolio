@@ -1,30 +1,11 @@
 import React from 'react';
 
-import { useTransition, animated } from 'react-spring';
-
 import { Box, Typography, Stack, Button } from '@mui/material';
 
-export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
-    const transitions = useTransition(showHeaderMenu, {
-        from: { y: -300 },
-        enter: { y: 20 },
-        leave: { Y: -300 },
-        reverse: showHeaderMenu,
-        delay: 200,
-    })
+export default function Menu() {
 
-    const piecesScroll = () => {
-        parallax.current.scrollTo(1);
-        setShowHeaderMenu(false);
-    };
-
-    const aboutMeScroll = () => {
-        parallax.current.scrollTo(2.5);
-        setShowHeaderMenu(false);
-    }
-
-    return transitions(
-        (styles, item) => item && <animated.div style={styles}>
+    return (
+        <>
             <Box sx={{
                 width: 240, 
                 height: 256,
@@ -61,7 +42,7 @@ export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }} onClick={piecesScroll}>PIECES</Button>
+                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }}>PIECES</Button>
                             </Box>
                         </Box>
                         <Box sx={{
@@ -82,7 +63,7 @@ export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }} onClick={aboutMeScroll}>ABOUT ME</Button>
+                                <Button sx={{ fontSize: '25px', padding: 0, height: '25px', color: 'malachite.main', fontWeight: 'lighter' }}>ABOUT ME</Button>
                             </Box>
                         </Box>
                         <Box sx={{
@@ -109,6 +90,6 @@ export default function Menu({ showHeaderMenu, setShowHeaderMenu, parallax }) {
                     </Stack>
                 </Box>
             </Box>
-        </animated.div>
+        </>
     );
 }
