@@ -19,17 +19,16 @@ export default function Menu({ setScrollToPieces, setScrollToAbout }) {
     <Box
       sx={{
         width: 236,
-        height: 252,
+        height: 235,
         backgroundColor: 'rose.main',
         borderRadius: '24px',
         zIndex: 12,
         position: 'fixed',
-        mb: '200px',
         top: '10vh',
         left: (width - 236) / 2,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'top',
       }}
     >
       <Stack spacing='23px' sx={{ display: 'flex', alignItems: 'center' }}>
@@ -38,121 +37,65 @@ export default function Menu({ setScrollToPieces, setScrollToAbout }) {
             textAlign: 'center',
             fontSize: '30px',
             color: 'malachite.main',
-            marginTop: '8px',
+            pt: '10px',
           }}
         >
           MENU
         </Typography>
-        <Box
+
+        <Button
           sx={{
-            width: 95,
-            height: 32,
-            background:
-              'linear-gradient(to bottom right, #FBFE5C, #FC6BFF, #FFFFFF)',
-            borderRadius: '25px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            px: '8px',
+            height: '30px',
+            backgroundColor: 'malachite.main',
+            '&:hover': {
+              color: 'malachite.main',
+            },
+            borderRadius: '24px',
+            fontSize: '25px',
+            color: 'rose.main',
+            fontWeight: 'regular',
+            variant: 'contained',
+          }}
+          onClick={scrollPiecesToggle}
+        >
+          PIECES
+        </Button>
+
+        <Button
+          sx={{
+            px: '8px',
+            height: '30px',
+            backgroundColor: 'malachite.main',
+            '&:hover': {
+              color: 'malachite.main',
+            },
+            borderRadius: '24px',
+            fontSize: '25px',
+            color: 'rose.main',
+            fontWeight: 'regular',
+          }}
+          onClick={scrollAboutToggle}
+        >
+          ABOUT ME
+        </Button>
+
+        <Button
+          sx={{
+            px: '8px',
+            height: '30px',
+            backgroundColor: 'malachite.main',
+            '&:hover': {
+              color: 'malachite.main',
+            },
+            borderRadius: '24px',
+            fontSize: '25px',
+            color: 'rose.main',
+            fontWeight: 'regular',
           }}
         >
-          <Box
-            sx={{
-              width: 91,
-              height: 28,
-              backgroundColor: 'rose.main',
-              borderRadius: '24px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button
-              sx={{
-                fontSize: '25px',
-                padding: 0,
-                height: '25px',
-                color: 'malachite.main',
-                fontWeight: 'lighter',
-              }}
-              onClick={scrollPiecesToggle}
-            >
-              PIECES
-            </Button>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            width: 140,
-            height: 32,
-            background:
-              'linear-gradient(to bottom right, #FBFE5C, #FC6BFF, #FFFFFF)',
-            borderRadius: '25px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              width: 136,
-              height: 28,
-              backgroundColor: 'rose.main',
-              borderRadius: '24px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button
-              sx={{
-                fontSize: '25px',
-                padding: 0,
-                height: '25px',
-                color: 'malachite.main',
-                fontWeight: 'lighter',
-              }}
-              onClick={scrollAboutToggle}
-            >
-              ABOUT ME
-            </Button>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            width: 182,
-            height: 32,
-            background:
-              'linear-gradient(to bottom right, #FBFE5C, #FC6BFF, #FFFFFF)',
-            borderRadius: '25px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              width: 178,
-              height: 28,
-              backgroundColor: 'rose.main',
-              borderRadius: '24px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button
-              sx={{
-                fontSize: '25px',
-                padding: 0,
-                height: '25px',
-                color: 'malachite.main',
-                fontWeight: 'lighter',
-              }}
-            >
-              COMMISSIONS
-            </Button>
-          </Box>
-        </Box>
+          COMMISSIONS
+        </Button>
       </Stack>
     </Box>
   );
