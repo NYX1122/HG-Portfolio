@@ -4,8 +4,16 @@ import { Box, Typography, Stack, Button } from '@mui/material';
 
 import useWindowDimensions from '../../customHooks/useWindowDimensions';
 
-export default function Menu() {
+export default function Menu({ setScrollToPieces, setScrollToAbout }) {
   const { width } = useWindowDimensions();
+
+  const scrollPiecesToggle = () => {
+    setScrollToPieces(true);
+  };
+
+  const scrollAboutToggle = () => {
+    setScrollToAbout(true);
+  };
 
   return (
     <Box
@@ -66,6 +74,7 @@ export default function Menu() {
                 color: 'malachite.main',
                 fontWeight: 'lighter',
               }}
+              onClick={scrollPiecesToggle}
             >
               PIECES
             </Button>
@@ -102,6 +111,7 @@ export default function Menu() {
                 color: 'malachite.main',
                 fontWeight: 'lighter',
               }}
+              onClick={scrollAboutToggle}
             >
               ABOUT ME
             </Button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import PieceItem from '../components/PieceItem';
 import ParallaxLayer from '../components/ParallaxLayer';
@@ -7,7 +7,11 @@ import { Box } from '@mui/material';
 
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function PiecesOne() {
+export default function Pieces({
+  scrollToPieces,
+  setScrollToPieces,
+  toggleMenu,
+}) {
   // List of art to be displayed
   const artList = [
     {
@@ -58,9 +62,22 @@ export default function PiecesOne() {
 
   const y = useTransform(scrollYProgress, scrollRange, movementRange);
 
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (scrollToPieces) {
+      const { top } = ref.current.getBoundingClientRect();
+      const adjustedTop = Math.sign(top) === 1 ? top / 2.6 : top / 1.02;
+      window.scrollBy({ top: adjustedTop, left: 0, behavior: 'smooth' });
+      setScrollToPieces(false);
+      toggleMenu();
+    }
+  }, [scrollToPieces, setScrollToPieces, toggleMenu]);
+
   return (
     <>
       <Box
+        ref={ref}
         component={motion.div}
         sx={{
           height: '1400px',

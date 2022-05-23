@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import ParallaxLayer from '../components/ParallaxLayer';
 
@@ -6,16 +6,32 @@ import { Box, Typography } from '@mui/material';
 
 // import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function AboutMe() {
+export default function AboutMe({
+  scrollToAbout,
+  setScrollToAbout,
+  toggleMenu,
+}) {
   // const { scrollYProgress } = useViewportScroll();
   // const scrollRange = [0.75, 1];
   // const movementRange = [400, 0];
 
   // const y = useTransform(scrollYProgress, scrollRange, movementRange);
 
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (scrollToAbout) {
+      const { top } = ref.current.getBoundingClientRect();
+      window.scrollBy({ top: top, left: 0, behavior: 'smooth' });
+      setScrollToAbout(false);
+      toggleMenu();
+    }
+  }, [scrollToAbout, setScrollToAbout, toggleMenu]);
+
   return (
     <>
       <Box
+        ref={ref}
         // component={motion.div}
         sx={{
           display: 'flex',

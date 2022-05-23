@@ -4,7 +4,11 @@ import Menu from '../Menu';
 
 import { Box } from '@mui/material';
 
-export default function DarkOverlay({ toggleMenu }) {
+export default function DarkOverlay({
+  toggleMenu,
+  setScrollToPieces,
+  setScrollToAbout,
+}) {
   return (
     <>
       <Box
@@ -19,7 +23,10 @@ export default function DarkOverlay({ toggleMenu }) {
         }}
         onClick={toggleMenu}
       ></Box>
-      <Menu></Menu>
+      <Menu
+        setScrollToPieces={setScrollToPieces}
+        setScrollToAbout={setScrollToAbout}
+      ></Menu>
     </>
   );
 }

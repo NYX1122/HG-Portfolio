@@ -17,6 +17,8 @@ import { motion } from 'framer-motion';
 import { useScrollBlock } from './customHooks/useScrollBlock';
 
 export default function App() {
+  const [scrollToPieces, setScrollToPieces] = useState(false);
+  const [scrollToAbout, setScrollToAbout] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [blockScroll, allowScroll] = useScrollBlock();
 
@@ -44,7 +46,13 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {openMenu && <DarkOverlay toggleMenu={toggleMenu}></DarkOverlay>}
+      {openMenu && (
+        <DarkOverlay
+          toggleMenu={toggleMenu}
+          setScrollToPieces={setScrollToPieces}
+          setScrollToAbout={setScrollToAbout}
+        ></DarkOverlay>
+      )}
       <Box
         component={motion.div}
         initial={{ opacity: 0 }}
@@ -54,8 +62,16 @@ export default function App() {
       >
         <Header toggleMenu={toggleMenu}></Header>
         <Landing></Landing>
-        <Pieces></Pieces>
-        <AboutMe></AboutMe>
+        <Pieces
+          scrollToPieces={scrollToPieces}
+          setScrollToPieces={setScrollToPieces}
+          toggleMenu={toggleMenu}
+        ></Pieces>
+        <AboutMe
+          scrollToAbout={scrollToAbout}
+          setScrollToAbout={setScrollToAbout}
+          toggleMenu={toggleMenu}
+        ></AboutMe>
       </Box>
     </ThemeProvider>
   );
