@@ -16,7 +16,10 @@ import { motion } from 'framer-motion';
 
 import { useScrollBlock } from './customHooks/useScrollBlock';
 
+import { polyfill } from 'seamless-scroll-polyfill';
+
 export default function App() {
+  polyfill();
   const [scrollToPieces, setScrollToPieces] = useState(false);
   const [scrollToAbout, setScrollToAbout] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
