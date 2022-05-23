@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function Header() {
+export default function Header({ toggleMenu }) {
   const { scrollYProgress } = useViewportScroll();
   const scrollRange = [0.9, 1];
   const colorRange = ['#95ADB6', '#CBB3BF'];
@@ -40,7 +40,7 @@ export default function Header() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton sx={{ px: 0 }}>
+          <IconButton sx={{ px: 0 }} onClick={toggleMenu}>
             <MenuIcon sx={{ fontSize: 36, color: 'malachite.main' }}></MenuIcon>
           </IconButton>
         </Grid>

@@ -4,21 +4,22 @@ import Menu from '../Menu';
 
 import { Box } from '@mui/material';
 
-export default function DarkOverlay() {
+export default function DarkOverlay({ toggleMenu }) {
   return (
     <>
       <Box
         sx={{
-          position: 'absolute',
+          position: 'fixed',
+          top: '0',
           width: '100vw',
           height: '100vh',
           background: '#000',
           opacity: 0.6,
+          zIndex: 11,
         }}
+        onClick={toggleMenu}
       ></Box>
-      <Box sx={{ width: '35.31vw', display: 'flex', justifyContent: 'center' }}>
-        <Menu></Menu>
-      </Box>
+      <Menu></Menu>
     </>
   );
 }

@@ -1,32 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 import ParallaxLayer from '../components/ParallaxLayer';
-
-import useWindowDimensions from '../customHooks/useWindowDimensions';
 
 import { Box, Typography } from '@mui/material';
 
 // import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 export default function AboutMe() {
-  const { height } = useWindowDimensions();
-
-  const [elementTopPadding, setElementTopPadding] = useState(0);
-  const elementRef = useRef(null);
-
-  const [documentHeight, setDocumentHeight] = useState(0);
-
-  useEffect(() => {
-    const currentHeight = elementRef.current.clientHeight;
-    setElementTopPadding(height - currentHeight - 30);
-  }, [height]);
-
-  useEffect(() => {
-    const currentDocumentHeight = window.document.body.offsetHeight;
-    setDocumentHeight(currentDocumentHeight * -1 + 895);
-    console.log(documentHeight);
-  }, [documentHeight]);
-
   // const { scrollYProgress } = useViewportScroll();
   // const scrollRange = [0.75, 1];
   // const movementRange = [400, 0];
@@ -42,12 +22,11 @@ export default function AboutMe() {
           flexDirection: 'column',
           alignItems: 'center',
           pb: '30px',
-          pt: `${elementTopPadding}px`,
+          pt: '30px',
           backgroundColor: 'rain.main',
           position: 'relative',
           zIndex: '5',
         }}
-        ref={elementRef}
         // animate={{ y: 0 }}
         // style={{ y, scrollYProgress }}
       >
@@ -108,7 +87,7 @@ export default function AboutMe() {
         movementRange={[0, -600]}
         color={'rain.main'}
         height={'866px'}
-        bottom={`${documentHeight}px`}
+        bottom='0'
         zIndex={'4'}
       ></ParallaxLayer>
     </>

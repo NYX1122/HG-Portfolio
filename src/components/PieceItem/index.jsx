@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
 export default function PieceItem({ imgName, identifier }) {
-  console.log(identifier);
   const isEven = identifier % 2 === 0 ? true : false;
 
   return (
