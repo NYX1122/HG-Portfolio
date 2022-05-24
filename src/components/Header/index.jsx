@@ -24,6 +24,7 @@ export default function Header({ toggleMenu }) {
         width: '100vw',
         position: 'fixed',
         zIndex: 10,
+        boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.25)',
       }}
       animate={{ scrollYProgress: 0.9 }}
       style={{ backgroundColor, scrollYProgress }}
@@ -35,13 +36,25 @@ export default function Header({ toggleMenu }) {
         sx={{ px: '15px' }}
       >
         <Grid item>
-          <Typography variant='h5' color='malachite.main'>
+          <Typography
+            sx={{ fontSize: { sm: '34px' } }}
+            variant='h5'
+            color='malachite.main'
+          >
             HG Art and Photography
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton sx={{ px: 0 }} onClick={toggleMenu}>
-            <MenuIcon sx={{ fontSize: 36, color: 'malachite.main' }}></MenuIcon>
+          <IconButton
+            sx={{ px: 0, height: { sm: '67px' } }}
+            onClick={toggleMenu}
+          >
+            <MenuIcon
+              sx={{
+                fontSize: { xs: '36px', sm: '70px' },
+                color: 'malachite.main',
+              }}
+            ></MenuIcon>
           </IconButton>
         </Grid>
       </Grid>

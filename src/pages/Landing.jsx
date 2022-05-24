@@ -8,7 +8,10 @@ export default function Landing() {
   return (
     <Box
       sx={{
-        backgroundImage: 'url(/art/girl_dog_sleep.jpg)',
+        backgroundImage: {
+          xs: 'url(/art/girl_dog_sleepXS.jpg)',
+          sm: 'url(/art/girl_dog_sleepSM.jpg)',
+        },
         backgroundRepeat: 'no-repeat',
         width: '100vw',
         height: '100vh',
@@ -26,6 +29,7 @@ export default function Landing() {
             fontWeight: 200,
             marginTop: '25vh',
             marginBottom: '10vh',
+            fontSize: { sm: '70px' },
           }}
         >
           Welcome.
@@ -36,6 +40,7 @@ export default function Landing() {
             color: 'white',
             textShadow: 'black 0 5px 5px',
             fontWeight: 200,
+            fontSize: { sm: '55px' },
           }}
         >
           My Work
