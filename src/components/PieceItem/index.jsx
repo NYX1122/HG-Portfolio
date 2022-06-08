@@ -13,8 +13,22 @@ export default function PieceItem({ imgName, identifier }) {
       sx={{
         backgroundImage: `url(/art/${imgName}.jpg)`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        backgroundPosition:
+          identifier === 3
+            ? '20% 35%'
+            : identifier === 5
+            ? '50% 45%'
+            : identifier === 6
+            ? '50% 25%'
+            : identifier === 7
+            ? '50% 70%'
+            : 'center',
+        backgroundSize:
+          identifier === 3
+            ? '105%'
+            : identifier === 5 || identifier === 6
+            ? '100%'
+            : '120%',
         width: 338,
         height: 186.5,
         borderRadius: '24px',
