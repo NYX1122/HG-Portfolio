@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Menu from '../Menu';
-
 import { Box } from '@mui/material';
 
 import { motion } from 'framer-motion';

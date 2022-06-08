@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 export default function PieceItem({ imgName, identifier }) {
   const isEven = identifier % 2 === 0 ? true : false;
 
+  const onTap = (event, info) => {
+    console.log(event);
+  };
+
   return (
     <Box
       component={motion.div}
@@ -41,6 +45,7 @@ export default function PieceItem({ imgName, identifier }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, margin: '-150px 0px -50px 0px' }}
       transition={{ duration: 0.5 }}
+      onTap={onTap}
     ></Box>
   );
 }
