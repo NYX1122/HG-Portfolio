@@ -4,6 +4,8 @@ import { Box, Typography, Stack, Button } from '@mui/material';
 
 import useWindowDimensions from '../../customHooks/useWindowDimensions';
 
+import { motion } from 'framer-motion';
+
 export default function Menu({ setScrollToPieces, setScrollToAbout }) {
   const { width } = useWindowDimensions();
 
@@ -17,6 +19,11 @@ export default function Menu({ setScrollToPieces, setScrollToAbout }) {
 
   return (
     <Box
+      component={motion.div}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, y: -100 }}
+      exit={{ opacity: 0, y: -100 }}
       sx={{
         width: 236,
         height: 235,

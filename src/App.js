@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import Header from './components/Header';
 import DarkOverlay from './components/DarkOverlay';
+import Menu from './components/Menu';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 import AboutMe from './pages/AboutMe';
@@ -12,7 +13,7 @@ import { Box } from '@mui/material';
 
 import theme from './theme';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { useScrollBlock } from './customHooks/useScrollBlock';
 
@@ -49,13 +50,22 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {openMenu && (
-        <DarkOverlay
-          toggleMenu={toggleMenu}
-          setScrollToPieces={setScrollToPieces}
-          setScrollToAbout={setScrollToAbout}
-        ></DarkOverlay>
-      )}
+      <AnimatePresence>
+        {openMenu && (
+          <>
+            <DarkOverlay
+              toggleMenu={toggleMenu}
+              setScrollToPieces={setScrollToPieces}
+              setScrollToAbout={setScrollToAbout}
+            ></DarkOverlay>
+            <Menu
+              setScrollToPieces={setScrollToPieces}
+              setScrollToAbout={setScrollToAbout}
+              key='menu'
+            ></Menu>
+          </>
+        )}
+      </AnimatePresence>
       <Box
         component={motion.div}
         initial={{ opacity: 0 }}
