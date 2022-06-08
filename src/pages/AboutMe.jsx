@@ -63,12 +63,12 @@ export default function AboutMe({
         ></Box>
         <Typography
           sx={{
-            fontSize: 32,
+            fontSize: 36,
             color: 'malachite.main',
-            fontWeight: 'regular',
+            fontWeight: 'light',
             textShadow: '0 4px 4px #00000040',
             textAlign: 'center',
-            marginBottom: '5px',
+            marginBottom: '9px',
           }}
         >
           About Me
@@ -98,14 +98,14 @@ export default function AboutMe({
           incididunt ut labore et dolore.
         </Typography>
       </Box>
-      <ParallaxLayer
+      {/* <ParallaxLayer
         scrollRange={[0.7, 0.85]}
         movementRange={[0, -600]}
         color={'rain.main'}
         height={'866px'}
         bottom='0'
         zIndex={'4'}
-      ></ParallaxLayer>
+      ></ParallaxLayer> */}
     </>
   );
 }

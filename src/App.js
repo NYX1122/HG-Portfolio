@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 import AboutMe from './pages/AboutMe';
+import Commissions from './pages/Commissions';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
@@ -85,6 +86,7 @@ export default function App() {
           setScrollToAbout={setScrollToAbout}
           toggleMenu={toggleMenu}
         ></AboutMe>
+        <Commissions></Commissions>
       </Box>
     </ThemeProvider>
   );
