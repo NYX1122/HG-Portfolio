@@ -25,7 +25,7 @@ export default function PieceItem({ imgName, identifier }) {
       }}
       initial={{ opacity: 0, x: isEven ? -100 : 100 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, margin: '-280px 0px -93.25px 0px' }}
+      viewport={{ once: false, margin: '-150px 0px -50px 0px' }}
       transition={{ duration: 0.5 }}
     ></Box>
   );
