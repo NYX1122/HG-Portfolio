@@ -23,7 +23,7 @@ export default function DarkOverlay({
         height: '100vh',
         background: '#000',
         opacity: 0.6,
-        zIndex: 11,
+        zIndex: 12,
       }}
       onClick={toggleMenu}
       key='backdrop'

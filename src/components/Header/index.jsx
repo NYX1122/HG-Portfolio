@@ -23,6 +23,7 @@ export default function Header({ toggleMenu }) {
       sx={{
         width: '100vw',
         position: 'fixed',
+        top: 0,
         zIndex: 10,
         boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.25)',
       }}

@@ -22,21 +22,16 @@ import { useScrollBlock } from './customHooks/useScrollBlock';
 import { polyfill } from 'seamless-scroll-polyfill';
 
 export default function App() {
+  //Ios autoscroll
   polyfill();
+
+  //AutoScroll
   const [scrollToPieces, setScrollToPieces] = useState(false);
   const [scrollToAbout, setScrollToAbout] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [blockScroll, allowScroll] = useScrollBlock();
 
-  const toggleMenu = () => {
-    setOpenMenu(!openMenu);
-    if (!openMenu) {
-      blockScroll();
-    } else {
-      allowScroll();
-    }
-  };
-
+  //parallax bug fix and autoscroll to top on refresh
   useEffect(() => {
     const timer = setTimeout(() => {
       window.scrollTo({ top: 0.5, left: 0, behavior: 'smooth' });
@@ -50,6 +45,15 @@ export default function App() {
     };
   }, []);
 
+  //Menu toggle
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+    if (!openMenu) {
+      blockScroll();
+    } else {
+      allowScroll();
+    }
+  };
   return (
     <ThemeProvider theme={theme}>
       <AnimatePresence>

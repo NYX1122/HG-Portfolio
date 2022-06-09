@@ -75,7 +75,7 @@ export default function Pieces({
   }, [scrollToPieces, setScrollToPieces, toggleMenu]);
 
   return (
-    <>
+    <Box sx={{ position: 'relative' }}>
       <Box
         ref={ref}
         component={motion.div}
@@ -106,9 +106,9 @@ export default function Pieces({
         movementRange={[600, -600]}
         color={'rose.main'}
         height={'700px'}
-        top={'100vh'}
+        top={0}
         zIndex={'2'}
       ></ParallaxLayer>
-    </>
+    </Box>
   );
 }

@@ -17,6 +17,7 @@ export default function Landing() {
         height: '100vh',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
+        position: 'relative',
         zIndex: '1',
       }}
     >
