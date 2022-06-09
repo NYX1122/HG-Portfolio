@@ -8,6 +8,7 @@ import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 import AboutMe from './pages/AboutMe';
 import Commissions from './pages/Commissions';
+import ContactMe from './pages/ContactMe';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
@@ -87,6 +88,7 @@ export default function App() {
           toggleMenu={toggleMenu}
         ></AboutMe>
         <Commissions></Commissions>
+        <ContactMe></ContactMe>
       </Box>
     </ThemeProvider>
   );

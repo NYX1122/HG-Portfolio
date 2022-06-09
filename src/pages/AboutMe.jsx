@@ -53,7 +53,7 @@ export default function AboutMe({
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             width: 340,
-            height: 428,
+            height: 350,
             borderRadius: '24px',
             borderWidth: '3px',
             borderStyle: 'solid',
@@ -66,7 +66,7 @@ export default function AboutMe({
             fontSize: 36,
             color: 'malachite.main',
             fontWeight: 'light',
-            textShadow: '0 4px 4px #00000040',
+            textShadow: '0 4px 4px #00000025',
             textAlign: 'center',
             marginBottom: '9px',
           }}
@@ -83,19 +83,23 @@ export default function AboutMe({
         ></Box>
         <Typography
           sx={{
-            fontSize: '19px',
+            fontSize: '17px',
             color: 'malachite.main',
             fontWeight: 'regular',
-            textAlign: 'center',
+            textAlign: 'left',
             paddingX: '17px',
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore.
+          Hey there, my name is Hailey Gilson. I am a self-taught artist; my
+          skills include photography, painting, drawing, and graphic design. I
+          live in eastern Utah, and am currently pursuing a degree at Utah State
+          University. I have a great passion for natural beauty, often spending
+          my free time gardening or playing with my dogs and cat. Even moreso, I
+          enjoy creating artwork that is meaningful and emotionally powerful to
+          others, such as immortalizing the beautiful memory of lost pets, or by
+          capturing the joy between devoted lovers. Please feel free to contact
+          me if you have any questions about me, my art, or if you would like to
+          commission an original work &#128522;
         </Typography>
       </Box>
       {/* <ParallaxLayer

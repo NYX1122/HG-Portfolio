@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 
 import ParallaxLayer from '../components/ParallaxLayer';
 
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 // import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
