@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 import Header from './components/Header';
-import DarkOverlay from './components/DarkOverlay';
+import DarkCircleOverlay from './components/DarkCircleOverlay';
 import Menu from './components/Menu';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
@@ -15,7 +15,7 @@ import { Box } from '@mui/material';
 
 import theme from './theme';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, useCycle, AnimatePresence } from 'framer-motion';
 
 import { useScrollBlock } from './customHooks/useScrollBlock';
 
@@ -28,7 +28,7 @@ export default function App() {
   //AutoScroll
   const [scrollToPieces, setScrollToPieces] = useState(false);
   const [scrollToAbout, setScrollToAbout] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useCycle('closed', 'open');
   const [blockScroll, allowScroll] = useScrollBlock();
 
   //parallax bug fix and autoscroll to top on refresh
@@ -47,31 +47,30 @@ export default function App() {
 
   //Menu toggle
   const toggleMenu = () => {
-    setOpenMenu(!openMenu);
-    if (!openMenu) {
-      blockScroll();
-    } else {
+    if (openMenu === 'open') {
+      setOpenMenu('closed');
       allowScroll();
+    } else {
+      setOpenMenu('open');
+      blockScroll();
     }
   };
+
+  const circleVariants = {
+    open: {
+      scale: 200,
+      opacity: 0.6,
+      transition: { duration: 0.7 },
+    },
+    closed: {
+      scale: 0,
+      transition: { duration: 0.7 },
+      opacity: 0,
+    },
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <AnimatePresence>
-        {openMenu && (
-          <>
-            <DarkOverlay
-              toggleMenu={toggleMenu}
-              setScrollToPieces={setScrollToPieces}
-              setScrollToAbout={setScrollToAbout}
-            ></DarkOverlay>
-            <Menu
-              setScrollToPieces={setScrollToPieces}
-              setScrollToAbout={setScrollToAbout}
-              key='menu'
-            ></Menu>
-          </>
-        )}
-      </AnimatePresence>
       <Box
         component={motion.div}
         initial={{ opacity: 0 }}
@@ -79,17 +78,44 @@ export default function App() {
         transition={{ duration: 2.5 }}
         position='relative'
       >
+        <AnimatePresence>
+          {openMenu === 'open' && (
+            <Menu
+              toggleMenu={toggleMenu}
+              setScrollToPieces={setScrollToPieces}
+              setScrollToAbout={setScrollToAbout}
+              activate={openMenu}
+              variants={{
+                open: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8 },
+                },
+              }}
+            ></Menu>
+          )}
+        </AnimatePresence>
+        <DarkCircleOverlay
+          width='10px'
+          height='10px'
+          background='#000'
+          borderRadius='100px'
+          left='50%'
+          zIndex='15'
+          position='fixed'
+          activate={openMenu}
+          variants={circleVariants}
+          toggle={toggleMenu}
+        ></DarkCircleOverlay>
         <Header toggleMenu={toggleMenu}></Header>
         <Landing></Landing>
         <Pieces
           scrollToPieces={scrollToPieces}
           setScrollToPieces={setScrollToPieces}
-          toggleMenu={toggleMenu}
         ></Pieces>
         <AboutMe
           scrollToAbout={scrollToAbout}
           setScrollToAbout={setScrollToAbout}
-          toggleMenu={toggleMenu}
         ></AboutMe>
         <Commissions></Commissions>
         <ContactMe></ContactMe>

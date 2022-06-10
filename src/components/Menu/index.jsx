@@ -6,30 +6,38 @@ import useWindowDimensions from '../../customHooks/useWindowDimensions';
 
 import { motion } from 'framer-motion';
 
-export default function Menu({ setScrollToPieces, setScrollToAbout }) {
+export default function Menu({
+  setScrollToPieces,
+  setScrollToAbout,
+  activate,
+  variants,
+  toggleMenu,
+}) {
   const { width } = useWindowDimensions();
 
   const scrollPiecesToggle = () => {
+    toggleMenu();
     setScrollToPieces(true);
   };
 
   const scrollAboutToggle = () => {
+    toggleMenu();
     setScrollToAbout(true);
   };
 
   return (
     <Box
       component={motion.div}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      animate={activate}
       initial={{ opacity: 0, y: -100 }}
-      exit={{ opacity: 0, y: -100 }}
+      variants={variants}
+      exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
       sx={{
         width: 236,
         height: 235,
         backgroundColor: 'rose.main',
         borderRadius: '24px',
-        zIndex: 12,
+        zIndex: 16,
         position: 'fixed',
         top: '10vh',
         left: (width - 236) / 2,

@@ -7,11 +7,7 @@ import { Box } from '@mui/material';
 
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function Pieces({
-  scrollToPieces,
-  setScrollToPieces,
-  toggleMenu,
-}) {
+export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
   const artList = [
     {
@@ -70,9 +66,8 @@ export default function Pieces({
       const adjustedTop = Math.sign(top) === 1 ? top / 2.6 : top / 1.02;
       window.scrollBy({ top: adjustedTop, left: 0, behavior: 'smooth' });
       setScrollToPieces(false);
-      toggleMenu();
     }
-  }, [scrollToPieces, setScrollToPieces, toggleMenu]);
+  }, [scrollToPieces, setScrollToPieces]);
 
   return (
     <Box sx={{ position: 'relative' }}>

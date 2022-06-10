@@ -6,11 +6,7 @@ import { Box, Typography } from '@mui/material';
 
 // import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function AboutMe({
-  scrollToAbout,
-  setScrollToAbout,
-  toggleMenu,
-}) {
+export default function AboutMe({ scrollToAbout, setScrollToAbout }) {
   // const { scrollYProgress } = useViewportScroll();
   // const scrollRange = [0.75, 1];
   // const movementRange = [400, 0];
@@ -24,9 +20,8 @@ export default function AboutMe({
       const { top } = ref.current.getBoundingClientRect();
       window.scrollBy({ top: top, left: 0, behavior: 'smooth' });
       setScrollToAbout(false);
-      toggleMenu();
     }
-  }, [scrollToAbout, setScrollToAbout, toggleMenu]);
+  }, [scrollToAbout, setScrollToAbout]);
 
   return (
     <>

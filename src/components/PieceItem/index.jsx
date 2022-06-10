@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
+import DarkCircleOverlay from '../DarkCircleOverlay';
+
 import { Box } from '@mui/material';
 
 import { motion, useCycle } from 'framer-motion';
@@ -102,7 +104,7 @@ export default function PieceItem({ imgName, identifier }) {
         });
       }
     }
-  }, [selectPiece]);
+  }, [selectPiece, identifier]);
 
   return (
     <Box sx={{ position: 'relative' }}>
@@ -146,22 +148,20 @@ export default function PieceItem({ imgName, identifier }) {
         variants={variants}
         onClick={toggle}
       ></Box>
-      <Box
-        component={motion.div}
-        sx={{
-          width: '10px',
-          height: '10px',
-          background: '#000',
-          borderRadius: '100px',
-          top: '50%',
-          left: '50%',
-          zIndex: 1,
-          position: 'absolute',
-        }}
+      <DarkCircleOverlay
+        width='10px'
+        height='10px'
+        background='#000'
+        borderRadius='100px'
+        top='50%'
+        left='50%'
+        zIndex='1'
+        position='absolute'
         initial={{ opacity: 0 }}
-        animate={selectPiece}
+        activate={selectPiece}
         variants={variantsTwo}
-      ></Box>
+        toggle={toggle}
+      ></DarkCircleOverlay>
     </Box>
   );
 }

@@ -4,11 +4,7 @@ import { Box } from '@mui/material';
 
 import { motion } from 'framer-motion';
 
-export default function DarkOverlay({
-  toggleMenu,
-  setScrollToPieces,
-  setScrollToAbout,
-}) {
+export default function DarkOverlay({ toggleMenu }) {
   return (
     <Box
       component={motion.div}

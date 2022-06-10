@@ -5,28 +5,34 @@ import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
 export default function DarkCircleOverlay({
-  selectPiece,
-  variants,
+  width,
+  height,
+  background,
+  position,
   top,
   left,
   zIndex,
+  variants,
+  activate,
+  toggle,
 }) {
   return (
     <Box
       component={motion.div}
       sx={{
-        width: '10px',
-        height: '10px',
-        background: '#000',
+        width: width,
+        height: height,
+        background: background,
         borderRadius: '100px',
-        top: '50%',
-        left: '50%',
-        zIndex: 20,
-        position: 'fixed',
+        top: top,
+        left: left,
+        zIndex: zIndex,
+        position: position,
       }}
       initial={{ opacity: 0 }}
-      animate={selectPiece}
-      variants={variantsTwo}
+      animate={activate}
+      variants={variants}
+      onClick={toggle}
     ></Box>
   );
 }
