@@ -44,6 +44,7 @@ export default function PieceItem({ imgName, identifier }) {
           ? '93%'
           : '30%',
       zIndex: 5,
+      borderColor: '#CBB3BF',
     },
     deselected: { zIndex: 2 },
   };

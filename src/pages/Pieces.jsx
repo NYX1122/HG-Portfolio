@@ -70,21 +70,22 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   }, [scrollToPieces, setScrollToPieces]);
 
   return (
-    <Box sx={{ position: 'relative' }}>
+    <Box
+      component={motion.div}
+      sx={{ position: 'relative', zIndex: '5' }}
+      animate={{ y: 0 }}
+      style={{ y, scrollYProgress }}
+    >
       <Box
         ref={ref}
-        component={motion.div}
         sx={{
-          height: '1400px',
           my: '30px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           position: 'relative',
-          zIndex: '3',
+          zIndex: '2',
         }}
-        animate={{ y: 0 }}
-        style={{ y, scrollYProgress }}
       >
         {artList.map((item, index) => (
           <Box key={index}>
@@ -100,9 +101,9 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
         scrollRange={[0, 0.17]}
         movementRange={[600, -600]}
         color={'rose.main'}
-        height={'700px'}
+        height={'900px'}
         top={0}
-        zIndex={'2'}
+        zIndex={'1'}
       ></ParallaxLayer>
     </Box>
   );
