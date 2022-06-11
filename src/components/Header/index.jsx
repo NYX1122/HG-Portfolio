@@ -8,7 +8,7 @@ import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 export default function Header({ toggleMenu }) {
   const { scrollYProgress } = useViewportScroll();
-  const scrollRange = [0.9, 1];
+  const scrollRange = [0.28, 0.4];
   const colorRange = ['#95ADB6', '#CBB3BF'];
 
   const backgroundColor = useTransform(

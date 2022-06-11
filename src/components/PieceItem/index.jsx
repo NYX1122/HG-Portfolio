@@ -45,6 +45,7 @@ export default function PieceItem({ imgName, identifier }) {
           : '30%',
       zIndex: 5,
       borderColor: '#CBB3BF',
+      marginBottom: identifier === 7 ? '150px' : '8px',
     },
     deselected: { zIndex: 2 },
   };
@@ -67,7 +68,6 @@ export default function PieceItem({ imgName, identifier }) {
   useEffect(() => {
     if (selectPiece === 'selected') {
       const { top } = ref.current.getBoundingClientRect();
-      console.log(top);
       if (
         identifier === 0 ||
         identifier === 1 ||
