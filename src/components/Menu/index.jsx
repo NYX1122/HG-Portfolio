@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 export default function Menu({
   setScrollToPieces,
   setScrollToAbout,
+  setScrollToCommissions,
+  setScrollToContact,
   activate,
   variants,
   toggleMenu,
@@ -25,6 +27,23 @@ export default function Menu({
     setScrollToAbout(true);
   };
 
+  const scrollCommissionsToggle = () => {
+    toggleMenu();
+    setScrollToCommissions(true);
+  };
+
+  const scrollContactToggle = () => {
+    toggleMenu();
+    setScrollToContact(true);
+  };
+
+  const buttonData = [
+    { name: 'PIECES', onClick: scrollPiecesToggle },
+    { name: 'ABOUT', onClick: scrollAboutToggle },
+    { name: 'COMMISSIONS', onClick: scrollCommissionsToggle },
+    { name: 'CONTACT', onClick: scrollContactToggle },
+  ];
+
   return (
     <Box
       component={motion.div}
@@ -33,84 +52,48 @@ export default function Menu({
       variants={variants}
       exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
       sx={{
-        width: 236,
-        height: 235,
+        pt: '10px',
+        pb: '20px',
+        width: '58vw',
         backgroundColor: 'rose.main',
         borderRadius: '24px',
         zIndex: 16,
         position: 'fixed',
         top: '10vh',
-        left: (width - 236) / 2,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'top',
+        left: '21%',
       }}
     >
       <Stack spacing='23px' sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography
           sx={{
             textAlign: 'center',
-            fontSize: '30px',
+            fontSize: { xs: '25px', sm: '30px' },
             color: 'malachite.main',
-            pt: '10px',
           }}
         >
           MENU
         </Typography>
-
-        <Button
-          sx={{
-            px: '8px',
-            height: '30px',
-            backgroundColor: 'malachite.main',
-            '&:hover': {
-              color: 'malachite.main',
-            },
-            borderRadius: '24px',
-            fontSize: '25px',
-            color: 'rose.main',
-            fontWeight: 'regular',
-            variant: 'contained',
-          }}
-          onClick={scrollPiecesToggle}
-        >
-          PIECES
-        </Button>
-
-        <Button
-          sx={{
-            px: '8px',
-            height: '30px',
-            backgroundColor: 'malachite.main',
-            '&:hover': {
-              color: 'malachite.main',
-            },
-            borderRadius: '24px',
-            fontSize: '25px',
-            color: 'rose.main',
-            fontWeight: 'regular',
-          }}
-          onClick={scrollAboutToggle}
-        >
-          ABOUT ME
-        </Button>
-
-        <Button
-          sx={{
-            px: '8px',
-            height: '30px',
-            backgroundColor: 'malachite.main',
-            '&:hover': {
-              color: 'malachite.main',
-            },
-            borderRadius: '24px',
-            fontSize: '25px',
-            color: 'rose.main',
-            fontWeight: 'regular',
-          }}
-        >
-          COMMISSIONS
-        </Button>
+        {buttonData.map((item, index) => (
+          <Button
+            sx={{
+              px: '8px',
+              height: '30px',
+              backgroundColor: 'malachite.main',
+              '&:hover': {
+                color: 'malachite.main',
+              },
+              borderRadius: '24px',
+              fontSize: { xs: '20px', sm: '25px' },
+              color: 'rose.main',
+              fontWeight: 'regular',
+              variant: 'contained',
+            }}
+            onClick={item.onClick}
+            key={index}
+          >
+            {item.name}
+          </Button>
+        ))}
       </Stack>
     </Box>
   );

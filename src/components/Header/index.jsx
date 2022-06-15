@@ -38,7 +38,7 @@ export default function Header({ toggleMenu }) {
       >
         <Grid item>
           <Typography
-            sx={{ fontSize: { sm: '34px' } }}
+            sx={{ fontSize: { xs: '21px', sm: '34px' } }}
             variant='h5'
             color='malachite.main'
           >
@@ -47,12 +47,12 @@ export default function Header({ toggleMenu }) {
         </Grid>
         <Grid item>
           <IconButton
-            sx={{ px: 0, height: { sm: '67px' } }}
+            sx={{ px: 0, height: { xs: '42px', sm: '67px' } }}
             onClick={toggleMenu}
           >
             <MenuIcon
               sx={{
-                fontSize: { xs: '36px', sm: '70px' },
+                fontSize: { xs: '32px', sm: '70px' },
                 color: 'malachite.main',
               }}
             ></MenuIcon>

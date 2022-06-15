@@ -6,7 +6,9 @@ import DarkCircleOverlay from './components/DarkCircleOverlay';
 import Menu from './components/Menu';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
+import PiecesMed from './pages/PiecesMed';
 import AboutMe from './pages/AboutMe';
+import AboutMeMed from './pages/AboutMeMed';
 import Commissions from './pages/Commissions';
 import ContactMe from './pages/ContactMe';
 
@@ -18,16 +20,22 @@ import theme from './theme';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
 
 import { useScrollBlock } from './customHooks/useScrollBlock';
+import useWindowDimensions from './customHooks/useWindowDimensions';
 
 import { polyfill } from 'seamless-scroll-polyfill';
 
 export default function App() {
+  //responsive window
+  const { width, height } = useWindowDimensions();
+
   //Ios autoscroll
   polyfill();
 
   //AutoScroll
   const [scrollToPieces, setScrollToPieces] = useState(false);
   const [scrollToAbout, setScrollToAbout] = useState(false);
+  const [scrollToCommissions, setScrollToCommissions] = useState(false);
+  const [scrollToContact, setScrollToContact] = useState(false);
   const [openMenu, setOpenMenu] = useCycle('closed', 'open');
   const [blockScroll, allowScroll] = useScrollBlock();
 
@@ -84,6 +92,8 @@ export default function App() {
               toggleMenu={toggleMenu}
               setScrollToPieces={setScrollToPieces}
               setScrollToAbout={setScrollToAbout}
+              setScrollToCommissions={setScrollToCommissions}
+              setScrollToContact={setScrollToContact}
               activate={openMenu}
               variants={{
                 open: {
@@ -107,18 +117,39 @@ export default function App() {
           variants={circleVariants}
           toggle={toggleMenu}
         ></DarkCircleOverlay>
-        <Header toggleMenu={toggleMenu}></Header>
+        <Header toggleMenu={toggleMenu} width={width}></Header>
         <Landing></Landing>
-        <Pieces
-          scrollToPieces={scrollToPieces}
-          setScrollToPieces={setScrollToPieces}
-        ></Pieces>
-        <AboutMe
-          scrollToAbout={scrollToAbout}
-          setScrollToAbout={setScrollToAbout}
-        ></AboutMe>
-        <Commissions></Commissions>
-        <ContactMe></ContactMe>
+        {width >= 900 ? (
+          <PiecesMed
+            scrollToPieces={scrollToPieces}
+            setScrollToPieces={setScrollToPieces}
+          ></PiecesMed>
+        ) : (
+          <Pieces
+            scrollToPieces={scrollToPieces}
+            setScrollToPieces={setScrollToPieces}
+            height={height}
+          ></Pieces>
+        )}
+        {width >= 900 ? (
+          <AboutMeMed
+            scrollToAbout={scrollToAbout}
+            setScrollToAbout={setScrollToAbout}
+          ></AboutMeMed>
+        ) : (
+          <AboutMe
+            scrollToAbout={scrollToAbout}
+            setScrollToAbout={setScrollToAbout}
+          ></AboutMe>
+        )}
+        <Commissions
+          scrollToCommissions={scrollToCommissions}
+          setScrollToCommissions={setScrollToCommissions}
+        ></Commissions>
+        <ContactMe
+          scrollToContact={scrollToContact}
+          setScrollToContact={setScrollToContact}
+        ></ContactMe>
       </Box>
     </ThemeProvider>
   );

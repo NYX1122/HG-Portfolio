@@ -21,11 +21,4 @@ export default createTheme({
   typography: {
     fontFamily: 'Quicksand',
   },
-  components: {
-    MuiInput: {
-      defaultProps: {
-        disableUnderline: true,
-      },
-    },
-  },
 });

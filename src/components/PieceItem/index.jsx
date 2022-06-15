@@ -8,7 +8,7 @@ import { motion, useCycle } from 'framer-motion';
 
 import { useScrollBlock } from '../../customHooks/useScrollBlock';
 
-export default function PieceItem({ imgName, identifier }) {
+export default function PieceItem({ imgName, identifier, height }) {
   const ref = useRef(null);
   const [blockScroll, allowScroll] = useScrollBlock();
   const isEven = identifier % 2 === 0 ? true : false;
@@ -68,42 +68,8 @@ export default function PieceItem({ imgName, identifier }) {
   useEffect(() => {
     if (selectPiece === 'selected') {
       const { top } = ref.current.getBoundingClientRect();
-      if (
-        identifier === 0 ||
-        identifier === 1 ||
-        identifier === 2 ||
-        identifier === 3
-      ) {
-        const adjustedTop = Math.sign(top) === 1 ? top / 1.8 : top / 1.8;
-        window.scrollBy({ top: adjustedTop - 40, left: 0, behavior: 'smooth' });
-      } else if (identifier === 4) {
-        const adjustedTop = Math.sign(top) === 1 ? top / 1.75 : top / 0.57;
-        window.scrollBy({
-          top: adjustedTop - 40,
-          left: 0,
-          behavior: 'smooth',
-        });
-      } else if (identifier === 5) {
-        const adjustedTop = Math.sign(top) === 1 ? top / 1.33 : top / 0.57;
-        window.scrollBy({
-          top: adjustedTop - 50,
-          left: 0,
-          behavior: 'smooth',
-        });
-      } else if (identifier === 6) {
-        const adjustedTop = Math.sign(top) === 1 ? top : top / 0.57;
-        window.scrollBy({
-          top: adjustedTop - 70,
-          left: 0,
-          behavior: 'smooth',
-        });
-      } else if (identifier === 7) {
-        window.scrollBy({
-          top: top - 70,
-          left: 0,
-          behavior: 'smooth',
-        });
-      }
+      const adjustedTop = top - 40;
+      window.scrollBy({ top: adjustedTop - 40, left: 0, behavior: 'smooth' });
     }
   }, [selectPiece, identifier]);
 
@@ -131,8 +97,8 @@ export default function PieceItem({ imgName, identifier }) {
               : identifier === 5 || identifier === 6
               ? '100%'
               : '120%',
-          width: 338,
-          height: 186.5,
+          width: '85vw',
+          height: height < 825 ? '135px' : '186.5px',
           borderRadius: '24px',
           borderWidth: '3px',
           borderStyle: 'solid',
