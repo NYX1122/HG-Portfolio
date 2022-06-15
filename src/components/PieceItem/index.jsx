@@ -84,7 +84,6 @@ export default function PieceItem({ imgName, identifier }) {
   const { height } = useWindowSize();
 
   useEffect(() => {
-    console.log(height);
     if (height < 825) {
       setTallness('shorter');
     } else if (height > 825) {
