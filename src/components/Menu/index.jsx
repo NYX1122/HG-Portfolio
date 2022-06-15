@@ -50,7 +50,7 @@ export default function Menu({
       animate={activate}
       initial={{ opacity: 0, y: -100 }}
       variants={variants}
-      exit={{ opacity: 0, y: -100, transition: { duration: 0.8 } }}
+      exit={{ opacity: 0, y: -100, transition: { duration: 0.35 } }}
       sx={{
         pt: '10px',
         pb: '20px',

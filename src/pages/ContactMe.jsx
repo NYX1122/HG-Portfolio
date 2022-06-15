@@ -23,7 +23,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
     inputAnim: (i) => ({
       scaleX: 1,
       transition: {
-        delay: i * 0.25,
+        delay: i * 0.15,
       },
     }),
     inputStart: { scaleX: 0 },

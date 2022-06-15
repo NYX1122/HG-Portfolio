@@ -68,11 +68,11 @@ export default function App() {
     open: {
       scale: 200,
       opacity: 0.6,
-      transition: { duration: 0.7 },
+      transition: { duration: 0.35 },
     },
     closed: {
       scale: 0,
-      transition: { duration: 0.7 },
+      transition: { duration: 0.35 },
       opacity: 0,
     },
   };
@@ -99,7 +99,7 @@ export default function App() {
                 open: {
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.8 },
+                  transition: { duration: 0.35 },
                 },
               }}
             ></Menu>
