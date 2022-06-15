@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Typography, Stack, Button } from '@mui/material';
 
-import useWindowDimensions from '../../customHooks/useWindowDimensions';
+import useWindowSize from '../../customHooks/useWindowSize';
 
 import { motion } from 'framer-motion';
 
@@ -15,7 +15,7 @@ export default function Menu({
   variants,
   toggleMenu,
 }) {
-  const { width } = useWindowDimensions();
+  const { width } = useWindowSize();
 
   const scrollPiecesToggle = () => {
     toggleMenu();

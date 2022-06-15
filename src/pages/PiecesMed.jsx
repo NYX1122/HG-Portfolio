@@ -5,7 +5,7 @@ import ParallaxLayer from '../components/ParallaxLayer';
 
 import { Box } from '@mui/material';
 
-import useWindowDimensions from '../customHooks/useWindowDimensions';
+import useWindowSize from '../customHooks/useWindowSize';
 
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
@@ -55,7 +55,7 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   ];
 
   //parallax effects
-  const { width } = useWindowDimensions();
+  const { width } = useWindowSize();
   const { scrollYProgress } = useViewportScroll();
   const scrollRange = [0, 0.25];
   const movementRange = [300, -500];

@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import useWindowDimensions from '../../../customHooks/useWindowDimensions';
+import useWindowSize from '../../../customHooks/useWindowSize';
 
 import { Box } from '@mui/material';
 
 import { motion } from 'framer-motion';
 
 export default function LandingArrow(props) {
-  const { width } = useWindowDimensions();
+  const { width } = useWindowSize();
 
   const widthVar = width >= 600 ? 150 : 120;
   const heightVar = (47 * widthVar) / 141;

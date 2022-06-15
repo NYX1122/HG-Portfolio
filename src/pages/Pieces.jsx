@@ -4,7 +4,7 @@ import PieceItem from '../components/PieceItem';
 
 import { Box } from '@mui/material';
 
-export default function Pieces({ scrollToPieces, setScrollToPieces, height }) {
+export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
   const artList = [
     {
@@ -77,7 +77,6 @@ export default function Pieces({ scrollToPieces, setScrollToPieces, height }) {
             imgName={item.name}
             identifier={index}
             alt={item.description}
-            height={height}
           ></PieceItem>
         </Box>
       ))}

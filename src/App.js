@@ -20,13 +20,13 @@ import theme from './theme';
 import { motion, useCycle, AnimatePresence } from 'framer-motion';
 
 import { useScrollBlock } from './customHooks/useScrollBlock';
-import useWindowDimensions from './customHooks/useWindowDimensions';
+import useWindowSize from './customHooks/useWindowSize';
 
 import { polyfill } from 'seamless-scroll-polyfill';
 
 export default function App() {
   //responsive window
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowSize();
 
   //Ios autoscroll
   polyfill();
@@ -128,7 +128,6 @@ export default function App() {
           <Pieces
             scrollToPieces={scrollToPieces}
             setScrollToPieces={setScrollToPieces}
-            height={height}
           ></Pieces>
         )}
         {width >= 900 ? (
