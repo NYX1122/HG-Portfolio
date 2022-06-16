@@ -1,8 +1,14 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
-import { Box, Typography, TextField } from '@mui/material';
+import FormModal from '../components/FormModal';
 
-import { motion } from 'framer-motion';
+import { Box, Typography, TextField, Button } from '@mui/material';
+
+import { motion, useCycle } from 'framer-motion';
+
+import emailjs from '@emailjs/browser';
+
+import { useScrollBlock } from '../customHooks/useScrollBlock';
 
 export default function ContactMe({ scrollToContact, setScrollToContact }) {
   //Map data
@@ -20,18 +26,128 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
 
   //Animation Variables
   const variants = {
-    inputAnim: (i) => ({
+    inputAnim: {
       scaleX: 1,
       transition: {
-        delay: i * 0.15,
+        delay: 0.15,
       },
-    }),
+    },
     inputStart: { scaleX: 0 },
+
+    ready: {
+      opacity: 1,
+    },
+    notReady: { opacity: 0.5 },
+  };
+
+  const circleVariants = {
+    open: {
+      scale: 200,
+      opacity: 0.6,
+      transition: { duration: 0.35 },
+    },
+    close: {
+      scale: 0,
+      transition: { duration: 0.35 },
+      opacity: 0,
+    },
+  };
+
+  //states, listenders, and effects used to control button disabling
+  const [buttonReady, setButtonReady] = useState('notReady', 'ready');
+  const [disabled, setDisabled] = useState(true);
+
+  const [eventArray, setEventArray] = useState([]);
+
+  const handleChange = (event) => {
+    const placeholder = event.target.placeholder;
+    const value = event.target.value;
+    if (eventArray.includes(placeholder)) {
+      if (!value) {
+        const filteredArray = eventArray.filter((item) => item !== placeholder);
+        setEventArray(filteredArray);
+      }
+    } else {
+      setEventArray([...eventArray, placeholder]);
+    }
+  };
+
+  useEffect(() => {
+    if (eventArray.length === 4) {
+      setButtonReady('ready');
+      setDisabled(false);
+    } else {
+      setButtonReady('notReady');
+      setDisabled(true);
+    }
+  }, [eventArray]);
+
+  //listener used to handle submit
+  const [modal, toggleModal] = useCycle('close', 'open');
+  const [errorType, setErrorType] = useState('');
+  const [blockScroll, allowScroll] = useScrollBlock();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    blockScroll();
+
+    const inquirerName = event.target[0].value;
+    const inquirerEmail = event.target[2].value;
+    const inquirerPhone = event.target[4].value;
+    const inquirerMessage = event.target[6].value;
+
+    const nameValidate = /^([a-zA-Z]+)\s([a-zA-Z]+)$/.test(inquirerName);
+    const emailValidate = /^([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$/.test(
+      inquirerEmail
+    );
+    const phoneValidate = /^(\([\d]{3}\))\s([\d]{3})-([\d]{4})$/.test(
+      inquirerPhone
+    );
+
+    console.log(nameValidate, emailValidate, phoneValidate);
+
+    if (nameValidate && emailValidate && phoneValidate) {
+      const templateParams = {
+        from_name: inquirerName,
+        user_email: inquirerEmail,
+        phone_number: inquirerPhone,
+        message: inquirerMessage,
+      };
+
+      await emailjs
+        .send(
+          'service_8foh7wh',
+          'hg_art',
+          templateParams,
+          'user_D9Sj4kQlybYrXXUQ34cjK'
+        )
+        .then(
+          (response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            event.target[0].value = '';
+            event.target[2].value = '';
+            event.target[4].value = '';
+            event.target[6].value = '';
+            toggleModal('open');
+          },
+          (err) => {
+            console.log('FAILED...', err);
+            toggleModal('open');
+            setErrorType('connection');
+          }
+        );
+    } else {
+      toggleModal('open');
+      setErrorType('validation');
+      console.log('validationError');
+    }
   };
 
   return (
     <Box
       sx={{
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'rose.main',
@@ -61,6 +177,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         component='form'
         noValidate
         autoComplete='off'
+        onSubmit={onSubmit}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
         {textFieldData.map((item, index) => (
@@ -83,13 +200,46 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
               width: '80vw',
               my: '15px',
             }}
-            custom={index + 1}
             initial='inputStart'
             whileInView='inputAnim'
             variants={variants}
+            onChange={handleChange}
           ></TextField>
         ))}
+        <Button
+          component={motion.button}
+          sx={{
+            px: '8px',
+            height: '30px',
+            backgroundColor: 'malachite.main',
+            '&:hover': {
+              color: 'malachite.main',
+            },
+            borderRadius: '24px',
+            fontSize: { xs: '25px', sm: '30px' },
+            color: 'rose.main',
+            fontWeight: 'regular',
+            variant: 'contained',
+            width: '85vw',
+            my: '15px',
+            py: '20px',
+          }}
+          initial='inputStart'
+          whileInView='inputAnim'
+          animate={buttonReady}
+          variants={variants}
+          disabled={disabled}
+          type='submit'
+        >
+          SUBMIT
+        </Button>
       </Box>
+      <FormModal
+        modal={modal}
+        toggleModal={toggleModal}
+        errorType={errorType}
+        allowScroll={allowScroll}
+      ></FormModal>
     </Box>
   );
 }

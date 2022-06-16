@@ -17,6 +17,10 @@ export default createTheme({
     overcast: {
       main: '#8DA1B9',
     },
+    action: {
+      disabledBackground: 'malachite.main',
+      disabled: 'rose.main',
+    },
   },
   typography: {
     fontFamily: 'Quicksand',

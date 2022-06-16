@@ -15,6 +15,7 @@ export default function DarkCircleOverlay({
   variants,
   activate,
   toggle,
+  initial,
 }) {
   return (
     <Box
@@ -29,7 +30,7 @@ export default function DarkCircleOverlay({
         zIndex: zIndex,
         position: position,
       }}
-      initial={{ opacity: 0 }}
+      initial={initial ? initial : { opacity: 0 }}
       animate={activate}
       variants={variants}
       onClick={toggle}
