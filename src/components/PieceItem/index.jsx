@@ -10,19 +10,29 @@ import useWindowSize from '../../customHooks/useWindowSize';
 import { useScrollBlock } from '../../customHooks/useScrollBlock';
 
 export default function PieceItem({ imgName, identifier }) {
+  const { width, height } = useWindowSize();
   const ref = useRef(null);
   const [blockScroll, allowScroll] = useScrollBlock();
   const isEven = identifier % 2 === 0 ? true : false;
-  const [selectPiece, setSelectPiece] = useCycle('deselected', 'selected');
+  const [selectPiece, setSelectPiece] = useState(
+    'deselected',
+    'selected',
+    'smallSelected'
+  );
   const [tallness, setTallness] = useState('taller');
 
   const toggle = () => {
-    if (selectPiece === 'selected') {
+    if (selectPiece === 'selected' || selectPiece === 'smallSelected') {
       setSelectPiece('deselected');
       allowScroll();
     } else {
-      setSelectPiece('selected');
-      blockScroll();
+      if (width < 600) {
+        setSelectPiece('selected');
+        blockScroll();
+      } else if (width > 600) {
+        setSelectPiece('smallSelected');
+        blockScroll();
+      }
     }
   };
 
@@ -46,20 +56,50 @@ export default function PieceItem({ imgName, identifier }) {
           ? '93%'
           : '30%',
       zIndex: 5,
-      borderColor: '#CBB3BF',
+      borderColor: '#CBB3BF00',
+      marginBottom: identifier === 7 ? '150px' : '8px',
+    },
+    smallSelected: {
+      paddingTop:
+        identifier === 0
+          ? '26%'
+          : identifier === 1
+          ? '61%'
+          : identifier === 2
+          ? '23%'
+          : identifier === 3
+          ? '44%'
+          : identifier === 4
+          ? '61%'
+          : identifier === 5
+          ? '61%'
+          : identifier === 6
+          ? '61%'
+          : '22%',
+      zIndex: 5,
+      borderColor: '#CBB3BF00',
       marginBottom: identifier === 7 ? '150px' : '8px',
     },
     deselected: { zIndex: 2 },
-    taller: {
+    tall: {
       height: '186.5px',
     },
     shorter: {
       height: '135px',
     },
+    taller: {
+      height: '43vh',
+    },
   };
 
   const variantsTwo = {
     selected: {
+      scale: 150,
+      opacity: 0.6,
+      zIndex: 4,
+      transition: { duration: 0.5 },
+    },
+    smallSelected: {
       scale: 150,
       opacity: 0.6,
       zIndex: 4,
@@ -74,19 +114,19 @@ export default function PieceItem({ imgName, identifier }) {
   };
 
   useEffect(() => {
-    if (selectPiece === 'selected') {
+    if (selectPiece === 'selected' || selectPiece === 'smallSelected') {
       const { top } = ref.current.getBoundingClientRect();
       const adjustedTop = top - 40;
       window.scrollBy({ top: adjustedTop - 40, left: 0, behavior: 'smooth' });
     }
   }, [selectPiece, identifier]);
 
-  const { height } = useWindowSize();
-
   useEffect(() => {
-    if (height < 825) {
+    if (height < 825 && width < 600) {
       setTallness('shorter');
-    } else if (height > 825) {
+    } else if (height > 825 && width < 600) {
+      setTallness('tall');
+    } else if (width > 600) {
       setTallness('taller');
     }
   }, [height]);
@@ -100,21 +140,49 @@ export default function PieceItem({ imgName, identifier }) {
           backgroundImage: `url(/art/${imgName}.jpg)`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition:
-            identifier === 3
-              ? '20% 35%'
-              : identifier === 5
-              ? '50% 45%'
-              : identifier === 6
-              ? '50% 25%'
-              : identifier === 7
-              ? '50% 70%'
-              : 'center',
+            width < 600
+              ? identifier === 3
+                ? '20% 35%'
+                : identifier === 5
+                ? '50% 45%'
+                : identifier === 6
+                ? '50% 25%'
+                : identifier === 7
+                ? '50% 70%'
+                : 'center'
+              : width > 600 &&
+                (identifier === 2
+                  ? '50% 30%'
+                  : identifier === 3
+                  ? '20% 35%'
+                  : identifier === 4
+                  ? '60% 50%'
+                  : identifier === 5
+                  ? '50% 45%'
+                  : identifier === 6
+                  ? '50% 25%'
+                  : identifier === 7
+                  ? '50% 35%'
+                  : 'center'),
           backgroundSize:
-            identifier === 3
-              ? '105%'
-              : identifier === 5 || identifier === 6
-              ? '100%'
-              : '120%',
+            width < 600
+              ? identifier === 3
+                ? '105%'
+                : identifier === 5 || identifier === 6
+                ? '100%'
+                : '120%'
+              : width > 600 &&
+                (identifier === 2
+                  ? '109%'
+                  : identifier === 1
+                  ? '115%'
+                  : identifier === 3
+                  ? '113%'
+                  : identifier === 4
+                  ? '109%'
+                  : identifier === 5 || identifier === 6
+                  ? '100%'
+                  : '111%'),
           width: '85vw',
           height: '186.5px',
           borderRadius: '24px',

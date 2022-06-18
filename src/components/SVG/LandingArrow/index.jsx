@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 export default function LandingArrow(props) {
   const { width } = useWindowSize();
 
-  const widthVar = width >= 600 ? 150 : 120;
+  const widthVar = width >= 600 ? 140 : 120;
   const heightVar = (47 * widthVar) / 141;
   return (
     <Box

@@ -54,13 +54,13 @@ export default function Menu({
       sx={{
         pt: '10px',
         pb: '20px',
-        width: '58vw',
+        width: { xs: '58vw', sm: '40vw' },
         backgroundColor: 'rose.main',
         borderRadius: '24px',
         zIndex: 16,
         position: 'fixed',
         top: '10vh',
-        left: '21%',
+        left: { xs: '21%', sm: '30%' },
       }}
     >
       <Stack spacing='23px' sx={{ display: 'flex', alignItems: 'center' }}>

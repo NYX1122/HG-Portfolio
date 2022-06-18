@@ -30,7 +30,7 @@ export default function Landing() {
             fontWeight: 200,
             marginTop: '25vh',
             marginBottom: '10vh',
-            fontSize: { xs: '50px', sm: '70px' },
+            fontSize: { xs: '50px', sm: '60px' },
           }}
         >
           Welcome.
@@ -41,7 +41,7 @@ export default function Landing() {
             color: 'white',
             textShadow: 'black 0 5px 5px',
             fontWeight: 200,
-            fontSize: { xs: '35px', sm: '55px' },
+            fontSize: { xs: '35px', sm: '45px' },
           }}
         >
           My Work

@@ -82,19 +82,21 @@ export default function Commissions({
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'rain.main',
+        backgroundColor: { xs: 'rain.main', sm: 'rose.main' },
         backgroundImage: 'url(/art/tree_blossoms.png)',
-        backgroundSize: '160%',
-        backgroundPosition: '53% 120%',
+        backgroundSize: { xs: '160%', sm: '95%' },
+        backgroundPosition: { xs: '53% 120%', sm: '50% 160%' },
         backgroundRepeat: 'no-repeat',
         py: '70px',
+        position: 'relative',
+        zIndex: 2,
       }}
       ref={ref}
     >
       <Typography
         component={motion.h1}
         sx={{
-          fontSize: { xs: '30px' },
+          fontSize: { xs: '30px', sm: '34px' },
           color: 'malachite.main',
           fontWeight: 'light',
           textShadow: '0 4px 4px #00000025',
@@ -115,7 +117,7 @@ export default function Commissions({
             sx={{
               fontWeight: 'light',
               color: 'white',
-              fontSize: { xs: '30px' },
+              fontSize: { xs: '30px', sm: '34px' },
               textShadow: '0 4px 4px #00000025',
               ml: '19px',
             }}
@@ -150,7 +152,7 @@ export default function Commissions({
                   component={motion.p}
                   sx={{
                     textAlign: 'left',
-                    fontSize: { xs: '22px' },
+                    fontSize: { xs: '22px', sm: '24px' },
                     color: 'white',
                     textShadow: '0 4px 4px #00000025',
                   }}
@@ -181,7 +183,7 @@ export default function Commissions({
                 <Typography
                   component={motion.p}
                   sx={{
-                    fontSize: { xs: '22px' },
+                    fontSize: { xs: '22px', sm: '24px' },
                     color: 'white',
                     fontWeight: 'light',
                     textShadow: '0 4px 4px #00000025',
