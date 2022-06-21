@@ -32,7 +32,10 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         delay: 0.15,
       },
     },
-    inputStart: { scaleX: 0 },
+    buttonStart: { scaleX: 0 },
+    inputStart: { scaleX: 0, opacity: 0.8 },
+    focus: { opacity: 1 },
+    unfocus: { opacity: 0.8 },
 
     ready: {
       opacity: 1,
@@ -40,18 +43,11 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
     notReady: { opacity: 0.5 },
   };
 
-  const circleVariants = {
-    open: {
-      scale: 200,
-      opacity: 0.6,
-      transition: { duration: 0.35 },
-    },
-    close: {
-      scale: 0,
-      transition: { duration: 0.35 },
-      opacity: 0,
-    },
-  };
+  //states used to control text field focus because MUI is TERRIBLE
+  const [focusOne, setFocusOne] = useState('unfocus');
+  const [focusTwo, setFocusTwo] = useState('unfocus');
+  const [focusThree, setFocusThree] = useState('unfocus');
+  const [focusFour, setFocusFour] = useState('unfocus');
 
   //states, listenders, and effects used to control button disabling
   const [buttonReady, setButtonReady] = useState('notReady', 'ready');
@@ -79,6 +75,26 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
     } else {
       setButtonReady('notReady');
       setDisabled(true);
+    }
+    if (eventArray.includes('Full Name')) {
+      setFocusOne('focus');
+    } else {
+      setFocusOne('unfocus');
+    }
+    if (eventArray.includes('Email')) {
+      setFocusTwo('focus');
+    } else {
+      setFocusTwo('unfocus');
+    }
+    if (eventArray.includes('Phone')) {
+      setFocusThree('focus');
+    } else {
+      setFocusThree('unfocus');
+    }
+    if (eventArray.includes('Message')) {
+      setFocusFour('focus');
+    } else {
+      setFocusFour('unfocus');
     }
   }, [eventArray]);
 
@@ -117,7 +133,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
 
       await emailjs
         .send(
-          'service_8foh7wh',
+          process.env.SERVICE_ID,
           'hg_art',
           templateParams,
           'user_D9Sj4kQlybYrXXUQ34cjK'
@@ -153,18 +169,22 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         backgroundColor: 'rose.main',
         pt: '70px',
         pb: '10px',
+        backgroundImage: { xs: 'none', sm: 'url(/art/bee_flowers.png)' },
+        backgroundSize: { sm: '100%' },
+        backgroundPosition: { sm: '50% 65%' },
+        backgroundRepeat: 'no-repeat',
       }}
       ref={ref}
     >
       <Typography
         component={motion.p}
         sx={{
-          fontSize: { xs: '30px' },
+          fontSize: { xs: '30px', sm: '34px' },
           color: 'malachite.main',
           fontWeight: 'light',
           textShadow: '0 4px 4px #00000025',
           textAlign: 'center',
-          mb: '15px',
+          mb: { xs: '15px', sm: '50px' },
         }}
         viewport={{ once: false, margin: '2000px 0px 0px 0px' }}
         initial={{ y: 50 }}
@@ -189,7 +209,10 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
             variant='standard'
             InputProps={{
               disableUnderline: true,
-              sx: { fontSize: '25px', color: 'malachite.main' },
+              sx: {
+                fontSize: { xs: '25px', sm: '29px' },
+                color: 'malachite.main',
+              },
             }}
             minRows={index === 3 ? 8 : 0}
             sx={{
@@ -197,9 +220,18 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
               borderRadius: '50px',
               boxShadow: '0 4px 4px #00000025',
               px: '20px',
-              width: '80vw',
+              width: { xs: '80vw', sm: '55vw' },
               my: '15px',
             }}
+            animate={
+              index === 0
+                ? focusOne
+                : index === 1
+                ? focusTwo
+                : index === 2
+                ? focusThree
+                : focusFour
+            }
             initial='inputStart'
             whileInView='inputAnim'
             variants={variants}
@@ -216,15 +248,15 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
               color: 'malachite.main',
             },
             borderRadius: '24px',
-            fontSize: { xs: '25px', sm: '30px' },
+            fontSize: { xs: '25px', sm: '29px' },
             color: 'rose.main',
             fontWeight: 'regular',
             variant: 'contained',
-            width: '85vw',
+            width: { xs: '85vw', sm: '60vw' },
             my: '15px',
             py: '20px',
           }}
-          initial='inputStart'
+          initial='buttonStart'
           whileInView='inputAnim'
           animate={buttonReady}
           variants={variants}
