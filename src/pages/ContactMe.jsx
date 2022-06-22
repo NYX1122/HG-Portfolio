@@ -6,8 +6,6 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 
 import { motion, useCycle } from 'framer-motion';
 
-import emailjs from '@emailjs/browser';
-
 import { useScrollBlock } from '../customHooks/useScrollBlock';
 
 export default function ContactMe({ scrollToContact, setScrollToContact }) {
@@ -131,28 +129,24 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         message: inquirerMessage,
       };
 
-      await emailjs
-        .send(
-          process.env.SERVICE_ID,
-          'hg_art',
-          templateParams,
-          'user_D9Sj4kQlybYrXXUQ34cjK'
-        )
-        .then(
-          (response) => {
-            console.log('SUCCESS!', response.status, response.text);
-            event.target[0].value = '';
-            event.target[2].value = '';
-            event.target[4].value = '';
-            event.target[6].value = '';
-            toggleModal('open');
-          },
-          (err) => {
-            console.log('FAILED...', err);
-            toggleModal('open');
-            setErrorType('connection');
-          }
-        );
+      const stringyTemplateParams = new URLSearchParams(
+        templateParams
+      ).toString();
+
+      const url = `/.netlify/functions/ContactFormEmail?${stringyTemplateParams}`;
+      try {
+        const formSubmission = await fetch(url).then((response) => response);
+        console.log('SUCCESS!', formSubmission);
+        event.target[0].value = '';
+        event.target[2].value = '';
+        event.target[4].value = '';
+        event.target[6].value = '';
+        toggleModal('open');
+      } catch (err) {
+        console.log('FAILED...', err);
+        toggleModal('open');
+        setErrorType('connection');
+      }
     } else {
       toggleModal('open');
       setErrorType('validation');
