@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     template_id: 'hg_art',
     user_id: 'user_D9Sj4kQlybYrXXUQ34cjK',
     template_params: params,
-    // accessToken: '6f9c184a66472d2ce155176d78cfb48f',
+    accessToken: '6f9c184a66472d2ce155176d78cfb48f',
   };
   console.log(data);
 

@@ -113,7 +113,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
 
     const nameValidate = await /^([a-zA-Z]+)\s([a-zA-Z]+)$/.test(inquirerName);
     const emailValidate =
-      await /^([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$/.test(inquirerEmail);
+      await /^([a-zA-Z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$/.test(inquirerEmail);
     const phoneValidate = await /^(\([\d]{3}\))\s([\d]{3})-([\d]{4})$/.test(
       inquirerPhone
     );
