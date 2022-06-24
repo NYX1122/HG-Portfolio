@@ -3,37 +3,44 @@ import fetch from 'node-fetch';
 const API_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
 exports.handler = async (event, context) => {
-  const params = context.queryStringParameters;
-  const updatedParams = { service_id: process.env.SERVICE_ID, ...params };
-  const convertedParams = JSON.stringify(updatedParams);
-  // let response;
-  // try {
-  //   response = await fetch(API_ENDPOINT, {
-  //     method: 'POST',
-  //     body: convertedParams,
-  //   });
-  //   console.log(response);
-  // } catch (err) {
-  //   console.log(err);
-  //   return {
-  //     statusCode: 400,
-  //     body: String(error),
-  //   };
-  // }
+  const params = event.queryStringParameters;
+  const data = {
+    service_id: process.env.SERVICE_ID,
+    template_id: 'hg_art',
+    user_id: 'user_D9Sj4kQlybYrXXUQ34cjK',
+    template_params: params,
+    accessToken: '6f9c184a66472d2ce155176d78cfb48f',
+  };
+  console.log(data);
 
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify({ data: response }),
-  // };
-
-  return fetch(API_ENDPOINT, {
+  return await fetch(API_ENDPOINT, {
     method: 'POST',
-    body: convertedParams,
-  })
-    .then((response) => response.json())
-    .then((data) => ({
-      statusCode: 200,
-      body: data,
-    }))
-    .catch((error) => ({ statusCode: 400, body: String(error) }));
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(
+    (result) => {
+      console.log(result.status);
+      if (result.status === 200) {
+        return {
+          statusCode: 200,
+          body: JSON.stringify(data),
+        };
+      } else {
+        return {
+          statusCode: 400,
+          body: JSON.stringify(data),
+        };
+      }
+    },
+    (error) => {
+      console.log(error);
+      return {
+        statusCode: 400,
+        body: JSON.stringify(error),
+      };
+    }
+  );
 };

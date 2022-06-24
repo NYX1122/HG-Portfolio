@@ -134,16 +134,16 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
       ).toString();
 
       const url = `/.netlify/functions/ContactFormEmail?${stringyTemplateParams}`;
-      try {
-        const formSubmission = await fetch(url).then((response) => response);
+      const formSubmission = await fetch(url).then((response) => response);
+      if (formSubmission.status === 200) {
         console.log('SUCCESS!', formSubmission);
         event.target[0].value = '';
         event.target[2].value = '';
         event.target[4].value = '';
         event.target[6].value = '';
         toggleModal('open');
-      } catch (err) {
-        console.log('FAILED...', err);
+      } else {
+        console.log('FAILED...', formSubmission);
         toggleModal('open');
         setErrorType('connection');
       }
