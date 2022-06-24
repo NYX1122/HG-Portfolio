@@ -106,10 +106,10 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
 
     blockScroll();
 
-    const inquirerName = event.target[0].value;
-    const inquirerEmail = event.target[2].value;
-    const inquirerPhone = event.target[4].value;
-    const inquirerMessage = event.target[6].value;
+    const inquirerName = event.target[0].value.trim();
+    const inquirerEmail = event.target[2].value.trim();
+    const inquirerPhone = event.target[4].value.trim();
+    const inquirerMessage = event.target[6].value.trim();
 
     const nameValidate = await /^([a-zA-Z]+)\s([a-zA-Z]+)$/.test(inquirerName);
     const emailValidate =
