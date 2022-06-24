@@ -141,15 +141,21 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         event.target[4].value = '';
         event.target[6].value = '';
         toggleModal('open');
+        setErrorType('');
       } else {
         console.log('FAILED...', formSubmission);
         toggleModal('open');
         setErrorType('connection');
       }
-    } else {
+    } else if (!nameValidate) {
       toggleModal('open');
-      setErrorType('validation');
-      console.log('validationError');
+      setErrorType('validationName');
+    } else if (!emailValidate) {
+      toggleModal('open');
+      setErrorType('validationEmail');
+    } else if (!phoneValidate) {
+      toggleModal('open');
+      setErrorType('validationPhone');
     }
   };
 

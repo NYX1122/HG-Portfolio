@@ -71,9 +71,7 @@ export default function FormModal({
               color: 'malachite.main',
             }}
           >
-            {errorType === 'validation' || errorType === 'connection'
-              ? 'ERROR!'
-              : 'SUCCESS!'}
+            {errorType ? 'ERROR!' : 'SUCCESS!'}
           </Typography>
           <Typography
             sx={{
@@ -83,8 +81,12 @@ export default function FormModal({
               pb: '8px',
             }}
           >
-            {errorType === 'validation'
-              ? 'Validation failed! Please make sure all fields are correctly formatted.'
+            {errorType === 'validationName'
+              ? 'Name validation failed! Please make sure to include both your first and last names.'
+              : errorType === 'validationEmail'
+              ? 'Email validation failed! Please make sure to use a proper email address that includes an "@" sign.'
+              : errorType === 'validationPhone'
+              ? 'Phone validation failed! Please make sure to enter your phone number in the following format - (000) 000-0000'
               : errorType === 'connection'
               ? 'Failed to connect to server. Please try again later.'
               : 'Message successfully sent.'}
