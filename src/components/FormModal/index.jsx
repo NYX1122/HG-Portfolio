@@ -86,7 +86,7 @@ export default function FormModal({
               : errorType === 'validationEmail'
               ? 'Email validation failed! Please make sure to use a proper email address that includes an "@" sign.'
               : errorType === 'validationPhone'
-              ? 'Phone validation failed! Please make sure to enter your phone number in the following format - (000) 000-0000'
+              ? 'Phone validation failed! Please make sure to enter your phone number in the following formats - (000) 000-0000, 000 000-0000, 0000000000'
               : errorType === 'connection'
               ? 'Failed to connect to server. Please try again later.'
               : 'Message successfully sent.'}
