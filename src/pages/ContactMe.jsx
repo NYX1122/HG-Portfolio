@@ -118,7 +118,8 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
     const phoneValidate =
       /^(\([\d]{3}\))\s([\d]{3})-([\d]{4})$/.test(inquirerPhone) ||
       /^[0-9]{10}$/.test(inquirerPhone) ||
-      /^([\d]{3})\s([\d]{3})-([\d]{4})$/.test(inquirerPhone);
+      /^([\d]{3})\s([\d]{3})-([\d]{4})$/.test(inquirerPhone) ||
+      /^([\d]{3})-([\d]{3})-([\d]{4})$/.test(inquirerPhone);
 
     console.log(nameValidate, emailValidate, phoneValidate);
 
