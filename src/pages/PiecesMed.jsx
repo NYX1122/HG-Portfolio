@@ -1,13 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import PieceItem from '../components/PieceItem';
-import ParallaxLayer from '../components/ParallaxLayer';
 
 import { Box } from '@mui/material';
-
-import useWindowSize from '../customHooks/useWindowSize';
-
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
@@ -54,64 +49,37 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
     },
   ];
 
-  //parallax effects
-  const { width } = useWindowSize();
-  const { scrollYProgress } = useViewportScroll();
-  const scrollRange = [0, 0.25];
-  const movementRange = [300, -500];
-
-  const y = useTransform(scrollYProgress, scrollRange, movementRange);
-
+  //autoscroll effect
   const ref = useRef(null);
-
-  //auto scroll
   useEffect(() => {
     if (scrollToPieces) {
       const { top } = ref.current.getBoundingClientRect();
-      const adjustedTop = Math.sign(top) === 1 ? top / 2.6 : top / 1.02;
-      window.scrollBy({ top: adjustedTop, left: 0, behavior: 'smooth' });
+      window.scrollBy({ top: top, left: 0, behavior: 'smooth' });
       setScrollToPieces(false);
     }
   }, [scrollToPieces, setScrollToPieces]);
 
   return (
     <Box
-      component={motion.div}
-      sx={{ position: 'relative', zIndex: '5' }}
-      animate={{ y: 0 }}
-      style={{ y, scrollYProgress }}
+      ref={ref}
+      sx={{
+        py: '70px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative',
+        zIndex: '2',
+      }}
     >
-      <Box
-        ref={ref}
-        sx={{
-          my: '30px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: '2',
-        }}
-      >
-        {artList.map((item, index) => (
-          <Box key={index}>
-            <PieceItem
-              imgName={item.name}
-              identifier={index}
-              alt={item.description}
-            ></PieceItem>
-          </Box>
-        ))}
-      </Box>
-      {width >= 900 && (
-        <ParallaxLayer
-          scrollRange={[0, 0.17]}
-          movementRange={[600, -600]}
-          color={'rose.main'}
-          height={'900px'}
-          top={0}
-          zIndex={'1'}
-        ></ParallaxLayer>
-      )}
+      {artList.map((item, index) => (
+        <Box key={index}>
+          <PieceItem
+            imgName={item.name}
+            identifier={index}
+            alt={item.description}
+          ></PieceItem>
+        </Box>
+      ))}
     </Box>
   );
 }

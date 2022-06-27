@@ -6,7 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
-export default function Header({ toggleMenu }) {
+export default function Header({ toggleMenu, width }) {
   const { scrollYProgress } = useViewportScroll();
   const scrollRange = [0.28, 0.4];
   const colorRange = ['#95ADB6', '#CBB3BF'];

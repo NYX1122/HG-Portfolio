@@ -2,13 +2,13 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 import Header from './components/Header';
+import MediumHeader from './components/MediumHeader';
 import DarkCircleOverlay from './components/DarkCircleOverlay';
 import Menu from './components/Menu';
 import Landing from './pages/Landing';
 import Pieces from './pages/Pieces';
 import PiecesMed from './pages/PiecesMed';
 import AboutMe from './pages/AboutMe';
-import AboutMeMed from './pages/AboutMeMed';
 import Commissions from './pages/Commissions';
 import ContactMe from './pages/ContactMe';
 
@@ -86,39 +86,50 @@ export default function App() {
         transition={{ duration: 2.5 }}
         position='relative'
       >
-        <AnimatePresence>
-          {openMenu === 'open' && (
-            <Menu
-              toggleMenu={toggleMenu}
-              setScrollToPieces={setScrollToPieces}
-              setScrollToAbout={setScrollToAbout}
-              setScrollToCommissions={setScrollToCommissions}
-              setScrollToContact={setScrollToContact}
+        {width < 900 ? (
+          <>
+            <AnimatePresence>
+              {openMenu === 'open' && (
+                <Menu
+                  toggleMenu={toggleMenu}
+                  setScrollToPieces={setScrollToPieces}
+                  setScrollToAbout={setScrollToAbout}
+                  setScrollToCommissions={setScrollToCommissions}
+                  setScrollToContact={setScrollToContact}
+                  activate={openMenu}
+                  variants={{
+                    open: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.35 },
+                    },
+                  }}
+                ></Menu>
+              )}
+            </AnimatePresence>
+            <DarkCircleOverlay
+              width='10px'
+              height='10px'
+              background='#000'
+              borderRadius='100px'
+              left='50%'
+              zIndex='15'
+              position='fixed'
               activate={openMenu}
-              variants={{
-                open: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.35 },
-                },
-              }}
-            ></Menu>
-          )}
-        </AnimatePresence>
-        <DarkCircleOverlay
-          width='10px'
-          height='10px'
-          background='#000'
-          borderRadius='100px'
-          left='50%'
-          zIndex='15'
-          position='fixed'
-          activate={openMenu}
-          variants={circleVariants}
-          toggle={toggleMenu}
-        ></DarkCircleOverlay>
-        <Header toggleMenu={toggleMenu} width={width}></Header>
-        <Landing></Landing>
+              variants={circleVariants}
+              toggle={toggleMenu}
+            ></DarkCircleOverlay>
+            <Header toggleMenu={toggleMenu} width={width}></Header>
+            <Landing></Landing>
+          </>
+        ) : (
+          <MediumHeader
+            setScrollToPieces={setScrollToPieces}
+            setScrollToAbout={setScrollToAbout}
+            setScrollToCommissions={setScrollToCommissions}
+            setScrollToContact={setScrollToContact}
+          ></MediumHeader>
+        )}
         {width >= 900 ? (
           <PiecesMed
             scrollToPieces={scrollToPieces}
@@ -130,17 +141,10 @@ export default function App() {
             setScrollToPieces={setScrollToPieces}
           ></Pieces>
         )}
-        {width >= 900 ? (
-          <AboutMeMed
-            scrollToAbout={scrollToAbout}
-            setScrollToAbout={setScrollToAbout}
-          ></AboutMeMed>
-        ) : (
-          <AboutMe
-            scrollToAbout={scrollToAbout}
-            setScrollToAbout={setScrollToAbout}
-          ></AboutMe>
-        )}
+        <AboutMe
+          scrollToAbout={scrollToAbout}
+          setScrollToAbout={setScrollToAbout}
+        ></AboutMe>
         <Commissions
           scrollToCommissions={scrollToCommissions}
           setScrollToCommissions={setScrollToCommissions}
