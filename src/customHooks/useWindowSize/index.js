@@ -5,7 +5,7 @@ export default function useWindowSize() {
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
-    height: window.outerHeight,
+    height: window.innerHeight,
   });
   useEffect(() => {
     // Handler to call on window resize
@@ -13,7 +13,7 @@ export default function useWindowSize() {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
-        height: window.outerHeight,
+        height: window.innerHeight,
       });
     }
     // Add event listener

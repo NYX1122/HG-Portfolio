@@ -27,6 +27,7 @@ import { polyfill } from 'seamless-scroll-polyfill';
 export default function App() {
   //responsive window
   const { width } = useWindowSize();
+  console.log(width);
 
   //Ios autoscroll
   polyfill();

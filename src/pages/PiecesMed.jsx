@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import MediumPieceItem from '../components/MediumPieceItem';
 
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
