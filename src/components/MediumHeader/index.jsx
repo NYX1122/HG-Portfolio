@@ -28,7 +28,7 @@ export default function Header({
         position: 'relative',
         backgroundColor: 'rose.main',
         top: 0,
-        zIndex: 10,
+        zIndex: 1,
         boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.25)',
       }}
     >

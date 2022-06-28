@@ -6,26 +6,27 @@ import { Box, Typography } from '@mui/material';
 
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
+  const sizeControl = 1;
   const artList = [
     [
       {
         name: 'bear_dog_medium',
         description: 'A brown dog named Bear.',
-        height: '43.95',
-        width: '33.70',
+        height: sizeControl * 43.95,
+        width: sizeControl * 33.7,
       },
       {
         name: 'dog_field_medium',
         description: 'A dog standing in a field.',
-        height: '49.11',
-        width: '33.70',
+        height: sizeControl * 49.11,
+        width: sizeControl * 33.7,
       },
       {
         name: 'sixties_medium',
         description:
           'Two people from the sixties eating dinner against a red background.',
-        height: '20.29',
-        width: '33.70',
+        height: sizeControl * 20.29,
+        width: sizeControl * 33.7,
       },
     ],
     [
@@ -33,22 +34,22 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
         {
           name: 'girl_dog_medium',
           description: 'A little girl and a puppy soundly asleep.',
-          height: '54.78',
-          width: '32.26',
+          height: sizeControl * 54.78,
+          width: sizeControl * 32.26,
         },
         [
           {
             name: 'moon_medium',
             description: 'A full moon at night.',
-            height: '28.37',
-            width: '34.04',
+            height: sizeControl * 28.37,
+            width: sizeControl * 34.04,
           },
           {
             name: 'little_girl_medium',
             description:
               'A little girl sitting on steps surrounded by flowers.',
-            height: '26.41',
-            width: '34.04',
+            height: sizeControl * 26.41,
+            width: sizeControl * 34.04,
           },
         ],
       ],
@@ -56,14 +57,14 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
         {
           name: 'tattoo_medium',
           description: 'A tattoo that has flowers surrounding a compass.',
-          height: '58.57',
-          width: '21.52',
+          height: sizeControl * 58.57,
+          width: sizeControl * 21.52,
         },
         {
           name: 'marylin_medium',
           description: 'A portrait of marylin monroe smiling.',
-          height: '58.54',
-          width: '44.78',
+          height: sizeControl * 58.56,
+          width: sizeControl * 44.78,
         },
       ],
     ],
@@ -71,30 +72,30 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
       {
         name: 'cow_medium',
         description: 'A spotted cow standing in a field.',
-        height: '67.66',
-        width: '50.02',
+        height: sizeControl * 67.66,
+        width: sizeControl * 50.02,
       },
       {
         name: 'cat_medium',
         description: 'A cat with some pink frogs.',
-        height: '35.74',
-        width: '50.02',
+        height: sizeControl * 35.74,
+        width: sizeControl * 50.02,
       },
     ],
     [
       {
         name: 'candle_medium',
         description: 'A candle melting in a hand.',
-        height: '62.98',
-        width: '49.98',
+        height: sizeControl * 62.98,
+        width: sizeControl * 49.98,
       },
 
       {
         name: 'car_medium',
         description:
           'A woman leaning against a pink car in front of the delicate arch',
-        height: '40.41',
-        width: '49.98',
+        height: sizeControl * 40.41,
+        width: sizeControl * 49.98,
       },
     ],
   ];
@@ -117,6 +118,7 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
         justifyContent: 'center',
         flexWrap: 'wrap',
         position: 'relative',
+        zIndex: '2',
       }}
     >
       {artList.map((item, index) => (
