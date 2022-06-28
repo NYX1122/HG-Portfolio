@@ -4,7 +4,7 @@ import DarkCircleOverlay from '../DarkCircleOverlay';
 
 import { Box } from '@mui/material';
 
-import { motion, useCycle } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import useWindowSize from '../../customHooks/useWindowSize';
 import { useScrollBlock } from '../../customHooks/useScrollBlock';

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+
+import DarkCircleOverlay from '../DarkCircleOverlay';
 
 import { Box } from '@mui/material';
 
 import { motion, useCycle } from 'framer-motion';
+
+import useWindowSize from '../../customHooks/useWindowSize';
+import { useScrollBlock } from '../../customHooks/useScrollBlock';
 
 export default function MediumPieceItem({ item }) {
   const [isHovering, changeHovering] = useCycle('notHovering', 'hovering');
@@ -42,6 +47,49 @@ export default function MediumPieceItem({ item }) {
           : 0,
     },
   };
+  const variantsTwo = {
+    active: {
+      scale: 230,
+      opacity: 0.6,
+      zIndex: 4,
+      transition: { duration: 0.65 },
+    },
+    inactive: {
+      scale: 1,
+      transition: { duration: 0.65 },
+      zIndex: 3,
+      opacity: 0,
+    },
+  };
+
+  const [blockScroll, allowScroll] = useScrollBlock();
+
+  const toggle = () => {
+    if (isActive === 'active') {
+      changeActive();
+      changeHovering();
+      allowScroll();
+    } else {
+      changeActive();
+      changeHovering();
+      blockScroll();
+    }
+  };
+
+  const ref = useRef(null);
+  const { height } = useWindowSize();
+  const windowHeight = height;
+
+  useEffect(() => {
+    if (isActive === 'active') {
+      const { top, height } = ref.current.getBoundingClientRect();
+      window.scrollBy({
+        top: top - (windowHeight - height) / 2,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, [isActive]);
 
   return (
     <Box
@@ -58,6 +106,7 @@ export default function MediumPieceItem({ item }) {
       variants={hoverVariants}
     >
       <Box
+        ref={ref}
         component={motion.div}
         sx={{
           backgroundImage: `url(/artMedium/${item.name}.jpg)`,
@@ -71,12 +120,23 @@ export default function MediumPieceItem({ item }) {
           zIndex: 2,
         }}
         animate={isActive}
-        onClick={() => {
-          changeActive();
-          changeHovering();
-        }}
+        onClick={toggle}
         variants={hoverVariants}
       ></Box>
+      <DarkCircleOverlay
+        width='10px'
+        height='10px'
+        background='#000'
+        borderRadius='100px'
+        top='50%'
+        left='50%'
+        zIndex='10'
+        position='absolute'
+        initial={{ opacity: 0 }}
+        activate={isActive}
+        variants={variantsTwo}
+        toggle={toggle}
+      ></DarkCircleOverlay>
     </Box>
   );
 }
