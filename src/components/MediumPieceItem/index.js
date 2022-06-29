@@ -10,6 +10,7 @@ import useWindowSize from '../../customHooks/useWindowSize';
 import { useScrollBlock } from '../../customHooks/useScrollBlock';
 
 export default function MediumPieceItem({ item }) {
+  const { height, width } = useWindowSize();
   const [isHovering, changeHovering] = useCycle('notHovering', 'hovering');
   const [isActive, changeActive] = useCycle('inactive', 'active');
   const hoverVariants = {
@@ -26,25 +27,25 @@ export default function MediumPieceItem({ item }) {
       // width: `${item.width * 1.5}vw`,
       scale:
         item.name === 'cow_medium' || item.name === 'candle_medium'
-          ? 1.35
+          ? 1.2
+          : item.name === 'marylin_medium' || item.name === 'tattoo_medium'
+          ? 1.26
+          : item.name === 'sixties_medium' ||
+            item.name === 'little_girl_medium' ||
+            item.name === 'moon_medium'
+          ? 2
           : 1.5,
       zIndex: 10,
       x:
         item.name === 'bear_dog_medium' ||
         item.name === 'dog_field_medium' ||
         item.name === 'sixties_medium' ||
+        item.name === 'cow_medium' ||
         item.name === 'cat_medium'
-          ? `${item.width / 4.012}vw`
-          : item.name === 'moon_medium' ||
-            item.name === 'little_girl_medium' ||
-            item.name === 'marylin_medium' ||
-            item.name === 'car_medium'
-          ? `${-1 * (item.width / 4.05)}vw`
-          : item.name === 'cow_medium'
-          ? `${item.width / 5.75}vw`
-          : item.name === 'candle_medium'
-          ? `${-1 * (item.width / 5.75)}vw`
-          : 0,
+          ? `${(width - (item.width / 100) * width) / 2}px`
+          : item.name === 'girl_dog_medium' || item.name === 'tattoo_medium'
+          ? `${50 - (item.width / 2 + 33.7)}vw`
+          : `-${(width - (item.width / 100) * width) / 2}px`,
     },
   };
   const variantsTwo = {
@@ -77,7 +78,6 @@ export default function MediumPieceItem({ item }) {
   };
 
   const ref = useRef(null);
-  const { height } = useWindowSize();
   const windowHeight = height;
 
   useEffect(() => {

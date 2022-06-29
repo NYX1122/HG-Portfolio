@@ -6,6 +6,7 @@ import { Box, Typography, TextField, Button } from '@mui/material';
 
 import { motion, useCycle } from 'framer-motion';
 
+import useWindowSize from '../customHooks/useWindowSize';
 import { useScrollBlock } from '../customHooks/useScrollBlock';
 
 export default function ContactMe({ scrollToContact, setScrollToContact }) {
@@ -162,6 +163,8 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
     }
   };
 
+  const { width } = useWindowSize();
+
   return (
     <Box
       sx={{
@@ -169,38 +172,47 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'rose.main',
-        pt: '70px',
-        pb: '10px',
+        pt: { xs: '70px', sm: '70px', md: '40px' },
+        pb: { xs: '20px', sm: '10px', md: '20px' },
         backgroundImage: { xs: 'none', sm: 'url(/art/bee_flowers.png)' },
-        backgroundSize: { sm: '100%' },
-        backgroundPosition: { sm: '50% 65%' },
+        backgroundSize: { sm: '100%', md: '75%' },
+        backgroundPosition: { sm: '50% 65%', md: '90% 60%' },
         backgroundRepeat: 'no-repeat',
+        zIndex: 2,
       }}
       ref={ref}
     >
       <Typography
         component={motion.p}
         sx={{
-          fontSize: { xs: '30px', sm: '34px' },
+          fontSize: { xs: '30px', sm: '34px', md: '38px' },
           color: 'malachite.main',
           fontWeight: 'light',
           textShadow: '0 4px 4px #00000025',
-          textAlign: 'center',
-          mb: { xs: '15px', sm: '50px' },
+          textAlign: { xs: 'center', sm: 'center', md: 'left' },
+          mb: { xs: '15px', sm: '50px', md: '30px' },
+          pl: { md: '30px' },
         }}
         viewport={{ once: false, margin: '2000px 0px 0px 0px' }}
         initial={{ y: 50 }}
         whileInView={{ y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        Contact Me
+        {width < 900 ? 'Contact Me' : 'Contact'}
       </Typography>
       <Box
         component='form'
         noValidate
         autoComplete='off'
         onSubmit={onSubmit}
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: { xs: 'center', sm: 'center', md: 'start' },
+          justifyContent: { md: 'space-around' },
+          pl: { md: '40px' },
+          height: { md: '85vh' },
+        }}
       >
         {textFieldData.map((item, index) => (
           <TextField
@@ -222,7 +234,10 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
               borderRadius: '50px',
               boxShadow: '0 4px 4px #00000025',
               px: '20px',
-              width: { xs: '80vw', sm: '55vw' },
+              width:
+                index === 3
+                  ? { xs: '80vw', sm: '55vw', md: '50vw' }
+                  : { xs: '80vw', sm: '55vw', md: '40vw' },
               my: '15px',
             }}
             animate={
@@ -254,7 +269,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
             color: 'rose.main',
             fontWeight: 'regular',
             variant: 'contained',
-            width: { xs: '85vw', sm: '60vw' },
+            width: { xs: '85vw', sm: '60vw', md: '54vw' },
             my: '15px',
             py: '20px',
           }}

@@ -10,6 +10,7 @@ import Pieces from './pages/Pieces';
 import PiecesMed from './pages/PiecesMed';
 import AboutMe from './pages/AboutMe';
 import Commissions from './pages/Commissions';
+import AboutCommissionsMed from './pages/AboutCommissionsMed';
 import ContactMe from './pages/ContactMe';
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -27,7 +28,6 @@ import { polyfill } from 'seamless-scroll-polyfill';
 export default function App() {
   //responsive window
   const { width } = useWindowSize();
-  console.log(width);
 
   //Ios autoscroll
   polyfill();
@@ -142,14 +142,27 @@ export default function App() {
             setScrollToPieces={setScrollToPieces}
           ></Pieces>
         )}
-        <AboutMe
-          scrollToAbout={scrollToAbout}
-          setScrollToAbout={setScrollToAbout}
-        ></AboutMe>
-        <Commissions
-          scrollToCommissions={scrollToCommissions}
-          setScrollToCommissions={setScrollToCommissions}
-        ></Commissions>
+        {width < 900 ? (
+          <>
+            <AboutMe
+              scrollToAbout={scrollToAbout}
+              setScrollToAbout={setScrollToAbout}
+              scrollToCommissions={scrollToCommissions}
+              setScrollToCommissions={setScrollToCommissions}
+            ></AboutMe>
+            <Commissions
+              scrollToCommissions={scrollToCommissions}
+              setScrollToCommissions={setScrollToCommissions}
+            ></Commissions>
+          </>
+        ) : (
+          <AboutCommissionsMed
+            scrollToAbout={scrollToAbout}
+            setScrollToAbout={setScrollToAbout}
+            scrollToCommissions={scrollToCommissions}
+            setScrollToCommissions={setScrollToCommissions}
+          ></AboutCommissionsMed>
+        )}
         <ContactMe
           scrollToContact={scrollToContact}
           setScrollToContact={setScrollToContact}

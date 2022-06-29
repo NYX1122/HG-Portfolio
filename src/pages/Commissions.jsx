@@ -102,6 +102,7 @@ export default function Commissions({
           textShadow: '0 4px 4px #00000025',
           textAlign: 'center',
           mb: '20px',
+          position: 'relative',
         }}
         viewport={{ once: false, margin: '2000px 0px 0px 0px' }}
         initial={{ y: 50 }}
