@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   // List of art to be displayed
-  const sizeControl = 1;
+  const sizeControl = 0.99;
   const artList = [
     [
       {
@@ -115,7 +115,7 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
       ref={ref}
       sx={{
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'left',
         flexWrap: 'wrap',
         position: 'relative',
         zIndex: '2',

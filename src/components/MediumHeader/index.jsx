@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Typography, Box, Button } from '@mui/material';
 
+import useWindowSize from '../../customHooks/useWindowSize';
+
 export default function Header({
   setScrollToPieces,
   setScrollToAbout,
@@ -21,6 +23,8 @@ export default function Header({
   const scrollContactToggle = () => {
     setScrollToContact(true);
   };
+
+  const { width } = useWindowSize();
   return (
     <Box
       sx={{
@@ -70,6 +74,7 @@ export default function Header({
             display: 'flex',
             justifyContent: 'space-around',
             width: '100vw',
+            pb: { lg: '.5vw' },
           }}
         >
           {data.map((item, index) => (
@@ -97,20 +102,22 @@ export default function Header({
             </Button>
           ))}
         </Box>
-        <Typography
-          sx={{
-            textAlign: 'left',
-            width: '100vw',
-            fontSize: '40px',
-            fontWeight: 'light',
-            color: 'white',
-            ml: '40px',
-            mb: '15px',
-            textShadow: '0 4px 4px #00000025',
-          }}
-        >
-          Welcome.
-        </Typography>
+        {width < 1200 && (
+          <Typography
+            sx={{
+              textAlign: 'left',
+              width: '100vw',
+              fontSize: '40px',
+              fontWeight: 'light',
+              color: 'white',
+              ml: '40px',
+              mb: '15px',
+              textShadow: '0 4px 4px #00000025',
+            }}
+          >
+            Welcome.
+          </Typography>
+        )}
       </Box>
     </Box>
   );
