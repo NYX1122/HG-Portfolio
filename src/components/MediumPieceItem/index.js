@@ -23,16 +23,7 @@ export default function MediumPieceItem({ item }) {
       transitionEnd: { zIndex: isActive === 'active' ? 4 : 2 },
     },
     active: {
-      scale:
-        item.name === 'cow_medium' || item.name === 'candle_medium'
-          ? 1.2
-          : item.name === 'marylin_medium' || item.name === 'tattoo_medium'
-          ? 1.26
-          : item.name === 'sixties_medium' ||
-            item.name === 'little_girl_medium' ||
-            item.name === 'moon_medium'
-          ? 2
-          : 1.5,
+      scale: 0.95 / (((item.height / 100) * width) / height),
       zIndex: 10,
       x:
         width < 1200
