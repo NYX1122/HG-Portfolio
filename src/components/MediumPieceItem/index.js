@@ -23,8 +23,6 @@ export default function MediumPieceItem({ item }) {
       transitionEnd: { zIndex: isActive === 'active' ? 4 : 2 },
     },
     active: {
-      // height: `${item.height * 1.5}vw`,
-      // width: `${item.width * 1.5}vw`,
       scale:
         item.name === 'cow_medium' || item.name === 'candle_medium'
           ? 1.2
@@ -37,14 +35,28 @@ export default function MediumPieceItem({ item }) {
           : 1.5,
       zIndex: 10,
       x:
-        item.name === 'bear_dog_medium' ||
-        item.name === 'dog_field_medium' ||
-        item.name === 'sixties_medium' ||
-        item.name === 'cow_medium' ||
-        item.name === 'cat_medium'
+        width < 1200
+          ? item.name === 'bear_dog_medium' ||
+            item.name === 'dog_field_medium' ||
+            item.name === 'sixties_medium' ||
+            item.name === 'cow_medium' ||
+            item.name === 'cat_medium'
+            ? `${(width - (item.width / 100) * width) / 2}px`
+            : item.name === 'girl_dog_medium' || item.name === 'tattoo_medium'
+            ? `${50 - (item.width / 2 + 33.7)}vw`
+            : `-${(width - (item.width / 100) * width) / 2}px`
+          : item.name === 'girl_dog_large' ||
+            item.name === 'shepherd_medium' ||
+            item.name === 'cow_medium' ||
+            item.name === 'moon_medium' ||
+            item.name === 'cat_large'
           ? `${(width - (item.width / 100) * width) / 2}px`
-          : item.name === 'girl_dog_medium' || item.name === 'tattoo_medium'
-          ? `${50 - (item.width / 2 + 33.7)}vw`
+          : item.name === 'smoking_medium' ||
+            item.name === 'tattoo_medium' ||
+            item.name === 'puppy_medium'
+          ? `${50 - (item.width / 2 + 23.83)}vw`
+          : item.name === 'horse_medium'
+          ? `-${50 - (item.width / 2 + 26.43)}vw`
           : `-${(width - (item.width / 100) * width) / 2}px`,
     },
   };
