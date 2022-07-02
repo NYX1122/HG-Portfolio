@@ -9,7 +9,7 @@ import useWindowSize from '../customHooks/useWindowSize';
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   const { width } = useWindowSize();
   // List of art to be displayed
-  const sizeControl = 0.99;
+  const sizeControl = 1;
   const artList =
     width < 1200
       ? [

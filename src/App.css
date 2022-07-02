@@ -1,4 +1,11 @@
-html, body {
+@media screen and (max-width: 600px) {
+  html {
+    min-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+body {
   min-width: 100vw;
   overflow-x: hidden;
 }
