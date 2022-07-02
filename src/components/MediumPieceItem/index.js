@@ -112,7 +112,7 @@ export default function MediumPieceItem({ item }) {
         ref={ref}
         component={motion.div}
         sx={{
-          backgroundImage: `url(/artMedium/${item.name}.jpg)`,
+          backgroundImage: `url(/artMedium/${item.name}.png)`,
           backgroundRepeat: 'no-repeat',
           backgroundClip: 'unset',
           width: `${item.width}vw`,
