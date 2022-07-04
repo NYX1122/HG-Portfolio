@@ -36,24 +36,40 @@ export default function MediumPieceItem({ item }) {
             : item.name === 'girl_dog_medium' || item.name === 'tattoo_medium'
             ? `${50 - (item.width / 2 + 33.7)}vw`
             : `-${(width - (item.width / 100) * width) / 2}px`
-          : item.name === 'girl_dog_large' ||
+          : width > 1200 && width < 1536
+          ? item.name === 'girl_dog_large' ||
             item.name === 'shepherd_medium' ||
             item.name === 'cow_medium' ||
-            item.name === 'moon_medium' ||
+            item.name === 'moon_large' ||
             item.name === 'cat_large'
-          ? `${(width - (item.width / 100) * width) / 2}px`
-          : item.name === 'smoking_medium' ||
-            item.name === 'tattoo_medium' ||
-            item.name === 'puppy_medium'
-          ? `${50 - (item.width / 2 + 23.83)}vw`
-          : item.name === 'horse_medium'
-          ? `-${50 - (item.width / 2 + 26.43)}vw`
-          : `-${(width - (item.width / 100) * width) / 2}px`,
+            ? `${(width - (item.width / 100) * width) / 2}px`
+            : item.name === 'smoking_medium' ||
+              item.name === 'tattoo_medium' ||
+              item.name === 'puppy_medium'
+            ? `${50 - (item.width / 2 + 23.83)}vw`
+            : item.name === 'horse_medium'
+            ? `-${50 - (item.width / 2 + 26.43)}vw`
+            : `-${(width - (item.width / 100) * width) / 2}px`
+          : width > 1536
+          ? item.name === 'girl_dog_large' ||
+            item.name === 'shepherd_medium' ||
+            item.name === 'cow_medium' ||
+            item.name === 'moon_large' ||
+            item.name === 'cat_large'
+            ? `${(width - (item.width / 100) * width) / 2 - width * 0.1}px`
+            : item.name === 'smoking_medium' ||
+              item.name === 'tattoo_medium' ||
+              item.name === 'puppy_medium'
+            ? `${50 - (item.width / 2 + 23.83) - 5}vw`
+            : item.name === 'horse_medium'
+            ? `-${50 - (item.width / 2 + 26.43) - 5}vw`
+            : `-${(width - (item.width / 100) * width) / 2 - width * 0.1}px`
+          : '0px',
     },
   };
   const variantsTwo = {
     active: {
-      scale: 230,
+      scale: 325,
       opacity: 0.6,
       zIndex: 4,
       transition: { duration: 0.65 },

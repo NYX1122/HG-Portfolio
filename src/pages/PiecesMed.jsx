@@ -9,7 +9,7 @@ import useWindowSize from '../customHooks/useWindowSize';
 export default function Pieces({ scrollToPieces, setScrollToPieces }) {
   const { width } = useWindowSize();
   // List of art to be displayed
-  const sizeControl = 1;
+  const sizeControl = width > 1536 ? 0.8 : 1;
   const artList =
     width < 1200
       ? [
@@ -127,7 +127,7 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
                   width: sizeControl * 23.83,
                 },
                 {
-                  name: 'moon_medium',
+                  name: 'moon_large',
                   description: 'A full moon at night.',
                   height: sizeControl * 16.21,
                   width: sizeControl * 23.83,
@@ -212,6 +212,8 @@ export default function Pieces({ scrollToPieces, setScrollToPieces }) {
         flexWrap: 'wrap',
         position: 'relative',
         zIndex: '2',
+        px: { xl: '10vw' },
+        backgroundColor: { xl: 'rain.main' },
       }}
     >
       {width < 1200 ? (
