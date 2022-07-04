@@ -47,7 +47,7 @@ export default function Header({
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: '20vw',
+            width: { md: '20vw', xl: '11vw' },
           }}
         >
           <Typography
@@ -73,7 +73,7 @@ export default function Header({
           sx={{
             display: 'flex',
             justifyContent: 'space-around',
-            width: '100vw',
+            width: { md: '100vw', xl: '80vw' },
             pb: { lg: '.5vw' },
           }}
         >
