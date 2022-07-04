@@ -4,6 +4,8 @@ import { Box, Typography } from '@mui/material';
 
 import { motion } from 'framer-motion';
 
+import useWindowSize from '../customHooks/useWindowSize';
+
 export default function AboutCommissionsMed({
   scrollToAbout,
   setScrollToAbout,
@@ -135,13 +137,15 @@ export default function AboutCommissionsMed({
     dashStart: { scaleX: 0 },
   };
 
+  const { width } = useWindowSize();
+
   return (
     <Box
       ref={ref}
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        py: '30px',
+        py: { md: '30px', lg: '3vw' },
         backgroundColor: 'rain.main',
         position: 'relative',
         zIndex: 1,
@@ -153,10 +157,27 @@ export default function AboutCommissionsMed({
           zIndex: 2,
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'center',
-          width: '100vw',
+          justifyContent: { md: 'center', lg: 'start' },
+          width: { md: '100vw', lg: '70vw' },
+          px: { lg: '3vw' },
         }}
       >
+        {width >= 1200 && (
+          <Box
+            sx={{
+              backgroundImage: 'url(/art/tree_blossoms_opaque.png)',
+              backgroundSize: '100%',
+              backgroundPosition: '50% 50%',
+              backgroundRepeat: 'no-repeat',
+              position: 'absolute',
+              top: '-1.5vw',
+              left: '66vw',
+              zIndex: 1,
+              width: '40vw',
+              height: '55vw',
+            }}
+          ></Box>
+        )}
         <Box
           component={motion.div}
           sx={{
@@ -164,8 +185,8 @@ export default function AboutCommissionsMed({
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            width: '33vw',
-            height: '52vw',
+            width: { md: '33vw', lg: '28vw' },
+            height: { md: '52vw', lg: '40vw' },
             borderRadius: '24px',
             borderWidth: '3px',
             borderStyle: 'solid',
@@ -228,7 +249,7 @@ export default function AboutCommissionsMed({
                 color: 'white',
                 fontWeight: 'light',
                 textAlign: 'left',
-                width: '50vw',
+                width: { md: '50vw', lg: '32vw' },
               }}
             >
               Hey there, my name is Hailey Gilson. I am a self-taught artist; my
@@ -367,31 +388,33 @@ export default function AboutCommissionsMed({
           </Box>
         ))}
       </Box>
-      <Box
-        sx={{
-          backgroundImage: 'url(/art/tree_blossoms_opaque.png)',
-          backgroundSize: '100%',
-          backgroundPosition: '50% 50%',
-          backgroundRepeat: 'no-repeat',
-          position: 'absolute',
-          top: '630px',
-          left: '55vw',
-          zIndex: 1,
-          width: '600px',
-          height: '1000px',
-        }}
-      ></Box>
+      {width < 1200 && (
+        <Box
+          sx={{
+            backgroundImage: 'url(/art/tree_blossoms_opaque.png)',
+            backgroundSize: '100%',
+            backgroundPosition: '50% 50%',
+            backgroundRepeat: 'no-repeat',
+            position: 'absolute',
+            top: '630px',
+            left: '55vw',
+            zIndex: 1,
+            width: '600px',
+            height: '1000px',
+          }}
+        ></Box>
+      )}
       <>
         <Box
           component={motion.div}
           sx={{
-            width: '65vw',
-            height: '65vw',
+            width: { md: '65vw', lg: '52vw' },
+            height: { md: '65vw', lg: '52vw' },
             backgroundColor: 'rose.main',
             borderRadius: '100%',
             position: 'absolute',
-            top: '-3.3vw',
-            left: '-10.8vw',
+            top: { md: '-3.3vw', lg: '-3vw' },
+            left: { md: '-10.8vw', lg: '-9vw' },
           }}
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
@@ -402,8 +425,8 @@ export default function AboutCommissionsMed({
             key={index}
             sx={{
               position: 'absolute',
-              top: '29.2vw',
-              left: '21.7vw',
+              top: { md: '29.2vw', lg: '23vw' },
+              left: { md: '21.7vw', lg: '17vw' },
             }}
           >
             <Box
