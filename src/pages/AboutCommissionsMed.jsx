@@ -139,6 +139,12 @@ export default function AboutCommissionsMed({
 
   const { width } = useWindowSize();
 
+  const butterflyData = [
+    { title: 'blue' },
+    { title: 'orange' },
+    { title: 'yellow' },
+  ];
+
   return (
     <Box
       ref={ref}
@@ -271,14 +277,35 @@ export default function AboutCommissionsMed({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          py: '70px',
-          px: '30px',
+          py: { md: '70px' },
+          pb: { lg: '0px' },
+          px: { md: '30px', lg: '3vw' },
           position: 'relative',
           zIndex: 2,
-          width: '58vw',
         }}
         ref={commissionsRef}
       >
+        {width >= 1200 && (
+          <Box>
+            {butterflyData.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  position: 'absolute',
+                  backgroundImage: `url(/butterflies/${item.title}.png)`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  width: '28vw',
+                  height: '28vw',
+                  top: index === 0 ? '22vw' : index === 1 ? '40vw' : '42vw',
+                  left:
+                    index === 0 ? '-2.5vw' : index === 1 ? '20vw' : '-1.5vw',
+                }}
+              ></Box>
+            ))}
+          </Box>
+        )}
         <Typography
           component={motion.h1}
           sx={{
@@ -298,7 +325,22 @@ export default function AboutCommissionsMed({
           Commissions
         </Typography>
         {sectionData.map((item, index) => (
-          <Box key={index}>
+          <Box
+            key={index}
+            sx={{
+              width: { md: '58vw', lg: '40vw' },
+              ml: {
+                lg:
+                  index === 0
+                    ? 0
+                    : index === 1
+                    ? '15vw'
+                    : index === 2
+                    ? '35vw'
+                    : index === 3 && '55vw',
+              },
+            }}
+          >
             <Typography
               component={motion.p}
               sx={{
