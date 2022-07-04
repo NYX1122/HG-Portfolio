@@ -175,7 +175,7 @@ export default function ContactMe({ scrollToContact, setScrollToContact }) {
         pt: { xs: '70px', sm: '70px', md: '40px' },
         pb: { xs: '20px', sm: '10px', md: '20px' },
         backgroundImage: { xs: 'none', sm: 'url(/art/bee_flowers.png)' },
-        backgroundSize: { sm: '100%', md: '75%' },
+        backgroundSize: { sm: '100%', md: '75%', lg: '60%' },
         backgroundPosition: { sm: '50% 65%', md: '90% 60%' },
         backgroundRepeat: 'no-repeat',
         zIndex: 2,
